@@ -14,7 +14,7 @@ fontsize: 12pt
 geometry: margin = 3cm
 header-includes: \usepackage[spanish, spanishkw, onelanguage, linesnumbered]{algorithm2e}
 github-repo: psirusteam/HHS-Handbook
-description: "Modelo de multinivel para la imputación del recuento de personas en Censos"
+description: "Area models for estimating poverty and labor market indicators"
 knit: "bookdown::render_book"
 lang: es
 linkcolor: blue

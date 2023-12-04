@@ -17,3 +17,7 @@ mapas-de-las-variables-con-información-censal.
 session-2--generalized-variance-function
 graphical-analysis
 variance-model
+session-1--fay-herriot-model---poverty-estimation
+estimation-procedure
+preparing-the-supplies-for-stan
+results-of-the-model-for-observed-domains.
