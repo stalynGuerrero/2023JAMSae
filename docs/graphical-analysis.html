@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.5 Population and Housing Censuses | Area-models-for-estimating-poverty-and-labor-market-indicators</title>
+  <title>2.1 Graphical Analysis | Area-models-for-estimating-poverty-and-labor-market-indicators</title>
   <meta name="description" content="Modelo de multinivel para la imputación del recuento de personas en Censos" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.5 Population and Housing Censuses | Area-models-for-estimating-poverty-and-labor-market-indicators" />
+  <meta property="og:title" content="2.1 Graphical Analysis | Area-models-for-estimating-poverty-and-labor-market-indicators" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Modelo de multinivel para la imputación del recuento de personas en Censos" />
   <meta name="github-repo" content="psirusteam/HHS-Handbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.5 Population and Housing Censuses | Area-models-for-estimating-poverty-and-labor-market-indicators" />
+  <meta name="twitter:title" content="2.1 Graphical Analysis | Area-models-for-estimating-poverty-and-labor-market-indicators" />
   
   <meta name="twitter:description" content="Modelo de multinivel para la imputación del recuento de personas en Censos" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="installing-rgee.html"/>
-<link rel="next" href="session-2--generalized-variance-function.html"/>
+<link rel="prev" href="session-2--generalized-variance-function.html"/>
+<link rel="next" href="variance-model.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -187,546 +187,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="population-and-housing-censuses" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Population and Housing Censuses<a href="population-and-housing-censuses.html#population-and-housing-censuses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>It’s necessary to define the variables for the country you want to work with. As a first step, access to the country’s census data is required. You can access it from the following link: <a href="https://redatam.org/en/microdata" class="uri">https://redatam.org/en/microdata</a>, where you’ll find a <em>.zip</em> file with the microdata for the country. To read this dataset, you’ll need to use the <em>redatam.open</em> function from the <code>redatam</code> library. This function directly depends on the census dictionary from REDATAM software, which is a file with a .dicx extension and should be located in the same folder as the data being read. This is how an object is created within R that merges the dictionary with the microdata from the census database. After performing a process in R using REDATAM syntax, we have the following table:</p>
-<table class="table table-striped lightable-classic" style="margin-left: auto; margin-right: auto; font-family: Arial Narrow; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-dam2
-</th>
-<th style="text-align:right;">
-area1
-</th>
-<th style="text-align:right;">
-sex2
-</th>
-<th style="text-align:right;">
-age
-</th>
-<th style="text-align:right;">
-tiene_sanitario
-</th>
-<th style="text-align:right;">
-tiene_electricidad
-</th>
-<th style="text-align:right;">
-tiene_acueducto
-</th>
-<th style="text-align:right;">
-tiene_gas
-</th>
-<th style="text-align:right;">
-eliminar_basura
-</th>
-<th style="text-align:right;">
-tiene_internet
-</th>
-<th style="text-align:right;">
-material_paredes
-</th>
-<th style="text-align:right;">
-material_techo
-</th>
-<th style="text-align:right;">
-TRANMODE_PRIVATE_CAR
-</th>
-<th style="text-align:right;">
-ODDJOB
-</th>
-<th style="text-align:right;">
-WORKED
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-0101
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
-0.5087
-</td>
-<td style="text-align:right;">
-2.5043
-</td>
-<td style="text-align:right;">
-0.0019
-</td>
-<td style="text-align:right;">
-0.7596
-</td>
-<td style="text-align:right;">
-0.9545
-</td>
-<td style="text-align:right;">
-0.7728
-</td>
-<td style="text-align:right;">
-0.7804
-</td>
-<td style="text-align:right;">
-0.9453
-</td>
-<td style="text-align:right;">
-0.0095
-</td>
-<td style="text-align:right;">
-0.7589
-</td>
-<td style="text-align:right;">
-0.1472
-</td>
-<td style="text-align:right;">
-0.0090
-</td>
-<td style="text-align:right;">
-0.3488
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0102
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
-0.4754
-</td>
-<td style="text-align:right;">
-2.4689
-</td>
-<td style="text-align:right;">
-0.0011
-</td>
-<td style="text-align:right;">
-0.9064
-</td>
-<td style="text-align:right;">
-0.9867
-</td>
-<td style="text-align:right;">
-0.9181
-</td>
-<td style="text-align:right;">
-0.9084
-</td>
-<td style="text-align:right;">
-0.9882
-</td>
-<td style="text-align:right;">
-0.0007
-</td>
-<td style="text-align:right;">
-0.9060
-</td>
-<td style="text-align:right;">
-0.0680
-</td>
-<td style="text-align:right;">
-0.0126
-</td>
-<td style="text-align:right;">
-0.2859
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0103
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
-0.5037
-</td>
-<td style="text-align:right;">
-2.2858
-</td>
-<td style="text-align:right;">
-0.0152
-</td>
-<td style="text-align:right;">
-0.6930
-</td>
-<td style="text-align:right;">
-0.9741
-</td>
-<td style="text-align:right;">
-0.7440
-</td>
-<td style="text-align:right;">
-0.7362
-</td>
-<td style="text-align:right;">
-0.9712
-</td>
-<td style="text-align:right;">
-0.0028
-</td>
-<td style="text-align:right;">
-0.6942
-</td>
-<td style="text-align:right;">
-0.0491
-</td>
-<td style="text-align:right;">
-0.0135
-</td>
-<td style="text-align:right;">
-0.2819
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0201
-</td>
-<td style="text-align:right;">
-0.5147
-</td>
-<td style="text-align:right;">
-0.5060
-</td>
-<td style="text-align:right;">
-2.5517
-</td>
-<td style="text-align:right;">
-0.0138
-</td>
-<td style="text-align:right;">
-0.2342
-</td>
-<td style="text-align:right;">
-0.8546
-</td>
-<td style="text-align:right;">
-0.2955
-</td>
-<td style="text-align:right;">
-0.6589
-</td>
-<td style="text-align:right;">
-0.8386
-</td>
-<td style="text-align:right;">
-0.0159
-</td>
-<td style="text-align:right;">
-0.2215
-</td>
-<td style="text-align:right;">
-0.1709
-</td>
-<td style="text-align:right;">
-0.0077
-</td>
-<td style="text-align:right;">
-0.3647
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0202
-</td>
-<td style="text-align:right;">
-0.9986
-</td>
-<td style="text-align:right;">
-0.5376
-</td>
-<td style="text-align:right;">
-2.7635
-</td>
-<td style="text-align:right;">
-0.0028
-</td>
-<td style="text-align:right;">
-0.3852
-</td>
-<td style="text-align:right;">
-0.8236
-</td>
-<td style="text-align:right;">
-0.4958
-</td>
-<td style="text-align:right;">
-0.4138
-</td>
-<td style="text-align:right;">
-0.6884
-</td>
-<td style="text-align:right;">
-0.0014
-</td>
-<td style="text-align:right;">
-0.5081
-</td>
-<td style="text-align:right;">
-0.4489
-</td>
-<td style="text-align:right;">
-0.0046
-</td>
-<td style="text-align:right;">
-0.4512
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0203
-</td>
-<td style="text-align:right;">
-0.9754
-</td>
-<td style="text-align:right;">
-0.5432
-</td>
-<td style="text-align:right;">
-2.8765
-</td>
-<td style="text-align:right;">
-0.0015
-</td>
-<td style="text-align:right;">
-0.3326
-</td>
-<td style="text-align:right;">
-0.7915
-</td>
-<td style="text-align:right;">
-0.4864
-</td>
-<td style="text-align:right;">
-0.3495
-</td>
-<td style="text-align:right;">
-0.5945
-</td>
-<td style="text-align:right;">
-0.0014
-</td>
-<td style="text-align:right;">
-0.5135
-</td>
-<td style="text-align:right;">
-0.5314
-</td>
-<td style="text-align:right;">
-0.0042
-</td>
-<td style="text-align:right;">
-0.4880
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0204
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
-0.5300
-</td>
-<td style="text-align:right;">
-2.6401
-</td>
-<td style="text-align:right;">
-0.0042
-</td>
-<td style="text-align:right;">
-0.5720
-</td>
-<td style="text-align:right;">
-0.8835
-</td>
-<td style="text-align:right;">
-0.6198
-</td>
-<td style="text-align:right;">
-0.6166
-</td>
-<td style="text-align:right;">
-0.7998
-</td>
-<td style="text-align:right;">
-0.0016
-</td>
-<td style="text-align:right;">
-0.5975
-</td>
-<td style="text-align:right;">
-0.3197
-</td>
-<td style="text-align:right;">
-0.0071
-</td>
-<td style="text-align:right;">
-0.4125
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0205
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
-0.5182
-</td>
-<td style="text-align:right;">
-2.6644
-</td>
-<td style="text-align:right;">
-0.0013
-</td>
-<td style="text-align:right;">
-0.8060
-</td>
-<td style="text-align:right;">
-0.9590
-</td>
-<td style="text-align:right;">
-0.8347
-</td>
-<td style="text-align:right;">
-0.8130
-</td>
-<td style="text-align:right;">
-0.9091
-</td>
-<td style="text-align:right;">
-0.0030
-</td>
-<td style="text-align:right;">
-0.8234
-</td>
-<td style="text-align:right;">
-0.3291
-</td>
-<td style="text-align:right;">
-0.0068
-</td>
-<td style="text-align:right;">
-0.4559
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0206
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
-0.5157
-</td>
-<td style="text-align:right;">
-2.3750
-</td>
-<td style="text-align:right;">
-0.0290
-</td>
-<td style="text-align:right;">
-0.0285
-</td>
-<td style="text-align:right;">
-0.8879
-</td>
-<td style="text-align:right;">
-0.1433
-</td>
-<td style="text-align:right;">
-0.1516
-</td>
-<td style="text-align:right;">
-0.9034
-</td>
-<td style="text-align:right;">
-0.0258
-</td>
-<td style="text-align:right;">
-0.0320
-</td>
-<td style="text-align:right;">
-0.0639
-</td>
-<td style="text-align:right;">
-0.0139
-</td>
-<td style="text-align:right;">
-0.2914
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0207
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
-0.5097
-</td>
-<td style="text-align:right;">
-2.4257
-</td>
-<td style="text-align:right;">
-0.0465
-</td>
-<td style="text-align:right;">
-0.1581
-</td>
-<td style="text-align:right;">
-0.8925
-</td>
-<td style="text-align:right;">
-0.2551
-</td>
-<td style="text-align:right;">
-0.2337
-</td>
-<td style="text-align:right;">
-0.9198
-</td>
-<td style="text-align:right;">
-0.0162
-</td>
-<td style="text-align:right;">
-0.1512
-</td>
-<td style="text-align:right;">
-0.0717
-</td>
-<td style="text-align:right;">
-0.0169
-</td>
-<td style="text-align:right;">
-0.3121
-</td>
-</tr>
-</tbody>
-</table>
-<div id="mapas-de-las-variables-con-información-censal." class="section level3 hasAnchor" number="1.5.1">
-<h3><span class="header-section-number">1.5.1</span> Mapas de las variables con información censal.<a href="population-and-housing-censuses.html#mapas-de-las-variables-con-información-censal." class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="Recursos/01_Session1/18_plot_Censo/area1.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/sex2.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/age.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/tiene_sanitario.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/tiene_electricidad.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/tiene_acueducto.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/tiene_gas.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/eliminar_basura.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/tiene_internet.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/material_paredes.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/material_techo.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/TRANMODE_PRIVATE_CAR.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/ODDJOB.png" width="400%" /><img src="Recursos/01_Session1/18_plot_Censo/WORKED.png" width="400%" /></p>
-
+<div id="graphical-analysis" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Graphical Analysis<a href="graphical-analysis.html#graphical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The first graph, <code>p1</code>, displays a scatter plot of the variable <code>ln_sigma2</code> against the variable <code>pobreza</code>, with a smooth line representing a trend estimation. The x-axis is labeled as <em>pobreza</em>.</p>
+<p>The second graph, <code>p2</code>, exhibits a scatter plot of the variable <code>ln_sigma2</code> against the variable <code>nd</code>, with a smooth line indicating a trend estimation. The x-axis is labeled as <em>Tamaño de muestra</em> (Sample Size).</p>
+<p>The third graph, <code>p3</code>, demonstrates a scatter plot of the variable <code>ln_sigma2</code> in relation to the product of <code>pobreza</code> and <code>nd</code>, with a smooth line representing a trend estimation. The x-axis is labeled as <em>Número de pobres</em> (Number of Poor).</p>
+<p>The fourth graph, <code>p4</code>, shows a scatter plot of the variable <code>ln_sigma2</code> against the square root of the variable <code>pobreza</code>, with a smooth line representing a trend estimation. The x-axis is labeled as <em>Raiz cuadrada de pobreza</em> (Square Root of Poverty).</p>
+<p>Overall, these graphs are designed to explore the relationship between <code>ln_sigma2</code> and different independent variables such as <code>pobreza</code>, <code>nd</code>, and the square root of poverty. Choosing to use the “loess” function to smooth the lines instead of a straight line aids in visualizing general trends in the data more effectively.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="graphical-analysis.html#cb15-1" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb15-2"><a href="graphical-analysis.html#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="graphical-analysis.html#cb15-3" tabindex="-1"></a><span class="co"># pobreza vs Ln_sigma2 #</span></span>
+<span id="cb15-4"><a href="graphical-analysis.html#cb15-4" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(baseFGV, <span class="fu">aes</span>(<span class="at">x =</span> pobreza, <span class="at">y =</span> ln_sigma2)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="graphical-analysis.html#cb15-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-6"><a href="graphical-analysis.html#cb15-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="graphical-analysis.html#cb15-7" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;poverty&quot;</span>)</span>
+<span id="cb15-8"><a href="graphical-analysis.html#cb15-8" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="graphical-analysis.html#cb15-9" tabindex="-1"></a><span class="co"># Sample Size vs Ln_sigma2 #</span></span>
+<span id="cb15-10"><a href="graphical-analysis.html#cb15-10" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(baseFGV, <span class="fu">aes</span>(<span class="at">x =</span> nd, <span class="at">y =</span> ln_sigma2)) <span class="sc">+</span> </span>
+<span id="cb15-11"><a href="graphical-analysis.html#cb15-11" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-12"><a href="graphical-analysis.html#cb15-12" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb15-13"><a href="graphical-analysis.html#cb15-13" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Sample size&quot;</span>)</span>
+<span id="cb15-14"><a href="graphical-analysis.html#cb15-14" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="graphical-analysis.html#cb15-15" tabindex="-1"></a><span class="co"># Number of Poor vs Ln_sigma2 #</span></span>
+<span id="cb15-16"><a href="graphical-analysis.html#cb15-16" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(baseFGV, <span class="fu">aes</span>(<span class="at">x =</span> pobreza <span class="sc">*</span> nd, <span class="at">y =</span> ln_sigma2)) <span class="sc">+</span> </span>
+<span id="cb15-17"><a href="graphical-analysis.html#cb15-17" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-18"><a href="graphical-analysis.html#cb15-18" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb15-19"><a href="graphical-analysis.html#cb15-19" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of poor&quot;</span>)</span>
+<span id="cb15-20"><a href="graphical-analysis.html#cb15-20" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="graphical-analysis.html#cb15-21" tabindex="-1"></a><span class="co"># Square Root of Poverty vs Ln_sigma2 #</span></span>
+<span id="cb15-22"><a href="graphical-analysis.html#cb15-22" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(baseFGV, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">sqrt</span>(pobreza), <span class="at">y =</span> ln_sigma2)) <span class="sc">+</span> </span>
+<span id="cb15-23"><a href="graphical-analysis.html#cb15-23" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-24"><a href="graphical-analysis.html#cb15-24" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb15-25"><a href="graphical-analysis.html#cb15-25" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Square root of poverty&quot;</span>)</span>
+<span id="cb15-26"><a href="graphical-analysis.html#cb15-26" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="graphical-analysis.html#cb15-27" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb15-28"><a href="graphical-analysis.html#cb15-28" tabindex="-1"></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> (p3 <span class="sc">|</span> p4)</span></code></pre></div>
+<p><img src="02_S1_FGV_files/figure-html/unnamed-chunk-9-1.svg" width="672" /></p>
 </div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="installing-rgee.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="session-2--generalized-variance-function.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="session-2--generalized-variance-function.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="variance-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -757,7 +261,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/psirusteam/2021ASDA/01_S00_Satellite_Images.qmd",
+"link": "https://github.com/psirusteam/2021ASDA/02_S1_FGV.qmd",
 "text": "Edit"
 },
 "history": {

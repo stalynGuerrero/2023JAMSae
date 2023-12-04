@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Session 2- Generalized Variance Function | Area-models-for-estimating-poverty-and-labor-market-indicators</title>
+  <meta name="description" content="Modelo de multinivel para la imputación del recuento de personas en Censos" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Session 2- Generalized Variance Function | Area-models-for-estimating-poverty-and-labor-market-indicators" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Modelo de multinivel para la imputación del recuento de personas en Censos" />
+  <meta name="github-repo" content="psirusteam/HHS-Handbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Session 2- Generalized Variance Function | Area-models-for-estimating-poverty-and-labor-market-indicators" />
+  
+  <meta name="twitter:description" content="Modelo de multinivel para la imputación del recuento de personas en Censos" />
+  
+
+
+
+<meta name="date" content="2023-12-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="population-and-housing-censuses.html"/>
+<link rel="next" href="graphical-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Area models for estimating poverty and labor market indicators</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop material</a></li>
+<li class="chapter" data-level="1" data-path="sesión-1--census-and-satellite-information.html"><a href="sesión-1--census-and-satellite-information.html"><i class="fa fa-check"></i><b>1</b> Sesión 1- Census and satellite information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="use-of-satellite-imagery-and-sae.html"><a href="use-of-satellite-imagery-and-sae.html"><i class="fa fa-check"></i><b>1.1</b> Use of Satellite Imagery and SAE</a></li>
+<li class="chapter" data-level="1.2" data-path="satellite-image-data-sources.html"><a href="satellite-image-data-sources.html"><i class="fa fa-check"></i><b>1.2</b> Satellite Image Data Sources</a></li>
+<li class="chapter" data-level="1.3" data-path="google-earth-engine.html"><a href="google-earth-engine.html"><i class="fa fa-check"></i><b>1.3</b> Google Earth Engine</a></li>
+<li class="chapter" data-level="1.4" data-path="installing-rgee.html"><a href="installing-rgee.html"><i class="fa fa-check"></i><b>1.4</b> Installing rgee</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="installing-rgee.html"><a href="installing-rgee.html#downloading-satellite-information"><i class="fa fa-check"></i><b>1.4.1</b> Downloading Satellite Information</a></li>
+<li class="chapter" data-level="1.4.2" data-path="installing-rgee.html"><a href="installing-rgee.html#night-lights"><i class="fa fa-check"></i><b>1.4.2</b> Night Lights</a></li>
+<li class="chapter" data-level="1.4.3" data-path="installing-rgee.html"><a href="installing-rgee.html#crop-cover"><i class="fa fa-check"></i><b>1.4.3</b> Crop Cover</a></li>
+<li class="chapter" data-level="1.4.4" data-path="installing-rgee.html"><a href="installing-rgee.html#urban-cover"><i class="fa fa-check"></i><b>1.4.4</b> Urban Cover</a></li>
+<li class="chapter" data-level="1.4.5" data-path="installing-rgee.html"><a href="installing-rgee.html#human-modification"><i class="fa fa-check"></i><b>1.4.5</b> Human Modification</a></li>
+<li class="chapter" data-level="1.4.6" data-path="installing-rgee.html"><a href="installing-rgee.html#average-travel-time-to-hospital"><i class="fa fa-check"></i><b>1.4.6</b> Average Travel Time to Hospital</a></li>
+<li class="chapter" data-level="1.4.7" data-path="installing-rgee.html"><a href="installing-rgee.html#average-travel-time-to-hospital-by-non-motorized-vehicle"><i class="fa fa-check"></i><b>1.4.7</b> Average Travel Time to Hospital by Non-Motorized Vehicle</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="population-and-housing-censuses.html"><a href="population-and-housing-censuses.html"><i class="fa fa-check"></i><b>1.5</b> Population and Housing Censuses</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="population-and-housing-censuses.html"><a href="population-and-housing-censuses.html#mapas-de-las-variables-con-información-censal."><i class="fa fa-check"></i><b>1.5.1</b> Mapas de las variables con información censal.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="session-2--generalized-variance-function.html"><a href="session-2--generalized-variance-function.html"><i class="fa fa-check"></i><b>2</b> Session 2- Generalized Variance Function</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="graphical-analysis.html"><a href="graphical-analysis.html"><i class="fa fa-check"></i><b>2.1</b> Graphical Analysis</a></li>
+<li class="chapter" data-level="2.2" data-path="variance-model.html"><a href="variance-model.html"><i class="fa fa-check"></i><b>2.2</b> Variance Model</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a Area models for estimating poverty and labor market indicators </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="session-2--generalized-variance-function" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Session 2- Generalized Variance Function<a href="session-2--generalized-variance-function.html#session-2--generalized-variance-function" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>One of the most important inputs in the area model is the variance of the direct estimator at the domain level, which cannot be calculated directly. Accordingly, this value must be estimated from the data collected in each domain. However, in domains with very small sample sizes, these estimations will not perform well. Hence, it is very useful to use a <strong>smoothing</strong> model for variances to eliminate noise and volatility from these estimations and extract the true signal of the process.</p>
+<p>Hidiroglou (2019) states that <span class="math inline">\(E_{\mathscr{MP}}\left(\hat{\theta}^{dir}_d\right)=\boldsymbol{x}^{T}_{d}\boldsymbol{\beta}\)</span> and <span class="math inline">\(V_{\mathscr{MP}}\left(\hat{\theta}^{dir}_d\right)=\sigma_{u}^2+\tilde{\sigma}^2_{d}\)</span>, where the subscript <span class="math inline">\(\mathscr{MP}\)</span> refers to the double inference that must be taken into account in these adjustments and defines the joint probability measure between the model and the sampling design.</p>
+<ul>
+<li><p><span class="math inline">\(\mathscr{M}\)</span> refers to the probability measure induced by modeling and the inclusion of auxiliary covariates (<span class="math inline">\(\boldsymbol{x}_{d}\)</span>).</p></li>
+<li><p><span class="math inline">\(\mathscr{MP}\)</span> refers to the probability measure induced by the complex sampling design that yields direct estimations.</p></li>
+</ul>
+<p>The solution proposed here is known as the Generalized Variance Function, which involves fitting a log-linear model to the estimated direct variance. Starting from the fact that an unbiased estimator of <span class="math inline">\(\sigma^2\)</span> denoted by <span class="math inline">\(\hat{\sigma}^2\)</span> is available, it follows that:
+<span class="math display">\[
+E_{\mathscr{MP}}\left(\hat{\sigma}_{d}^{2}\right)=E_{\mathscr{M}}\left(E_{\mathscr{P}}\left(\hat{\sigma}_{d}^{2}\right)\right)=E_{\mathscr{M}}\left(\sigma_{d}^{2}\right)=\tilde{\sigma}_{d}^{2}
+\]</span></p>
+<p>The above equality can be interpreted as an unbiased and simple estimator of <span class="math inline">\(\tilde{\sigma}_{d}^{2}\)</span>, denoted as <span class="math inline">\(\hat{\sigma}_{d}^{2}\)</span>. However, this sampling estimator is unstable when the sample size is small, which is precisely the dominant paradigm in small area estimation. Rivest and Belmonte (2000) consider smoothing models for the estimation of direct variances defined as follows:</p>
+<p><span class="math display">\[
+\log\left(\hat{\sigma}_{d}^{2}\right)=\boldsymbol{z}_{d}^{T}\boldsymbol{\alpha}+\boldsymbol{\varepsilon}_{d}
+\]</span></p>
+<p>Where <span class="math inline">\(\boldsymbol{z}_{d}\)</span> is a vector of explanatory covariates that are functions of <span class="math inline">\(\boldsymbol{x}_{d}\)</span>, <span class="math inline">\(\boldsymbol{\alpha}\)</span> is a vector of parameters to be estimated, <span class="math inline">\(\boldsymbol{\varepsilon}_{d}\)</span> are random errors with zero mean and constant variance, assumed to be identically distributed conditionally on <span class="math inline">\(\boldsymbol{z}_{d}\)</span>. From the above model, the smoothed estimation of the sampling variance is given by:</p>
+<p><span class="math display">\[
+\tilde{\sigma}_{d}^{2}=E_{\mathscr{MP}}\left(\sigma_{d}^{2}\right)=\exp\left(\boldsymbol{z}_{d}^{T}\boldsymbol{\alpha}\right)\times\Delta
+\]</span></p>
+<p>Where <span class="math inline">\(E_{\mathscr{MP}}\left(\varepsilon_{d}\right)=\Delta\)</span>. There’s no need to specify a parametric distribution for the errors of this model. Using the method of moments, the following unbiased estimator for <span class="math inline">\(\Delta\)</span> is obtained:</p>
+<p><span class="math display">\[
+\hat{\Delta}=\frac{\sum_{d=1}^{D}\hat{\sigma}_{d}^{2}}{\sum_{d=1}^{D}\exp\left(\boldsymbol{z}_{d}^{T}\boldsymbol{\alpha}\right)}
+\]</span></p>
+<p>Similarly, using standard procedures in linear regression, the estimation of the regression parameter coefficients is given by the following expression:</p>
+<p><span class="math display">\[
+\hat{\boldsymbol{\alpha}}=\left(\sum_{d=1}^{D}\boldsymbol{z}_{d}\boldsymbol{z}_{d}^{T}\right)^{-1}\sum_{d=1}^{D}\boldsymbol{z}_{d}\log\left(\hat{\sigma}_{d}^{2}\right)
+\]</span></p>
+<p>Finally, the smoothed estimator of the sampling variance is defined as:</p>
+<p><span class="math display">\[
+\hat{\tilde{\sigma}}_{d}^{2}=\exp\left(\boldsymbol{z}_{d}^{T}\hat{\boldsymbol{\alpha}}\right)\hat{\Delta}
+\]</span></p>
+<p><strong>Survey Data:</strong></p>
+<p>The following code processes data using various R packages such as <code>survey</code>, <code>tidyverse</code>, <code>srvyr</code>, <code>TeachingSampling</code>, and <code>haven</code>.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Library Loading:</strong> The code loads the necessary libraries (<code>survey</code>, <code>tidyverse</code>, <code>srvyr</code>, <code>TeachingSampling</code>, <code>haven</code>) required for data manipulation and analysis.</p></li>
+<li><p><strong>Survey Data Set Reading:</strong> The code reads the dataset named ‘data_JAM.rds’ using the <code>readRDS</code> function.</p></li>
+<li><p><strong>Data Manipulation:</strong></p>
+<ul>
+<li>It creates new variables (<code>dam2</code>, <code>fep</code>, <code>upm</code>, <code>estrato</code>, <code>ingreso</code>, <code>pobreza</code>) using the <code>mutate</code> function from the <code>dplyr</code> package.</li>
+<li>Filters the dataset based on a specific condition using the <code>filter</code> function.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="session-2--generalized-variance-function.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
+<span id="cb9-2"><a href="session-2--generalized-variance-function.html#cb9-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-3"><a href="session-2--generalized-variance-function.html#cb9-3" tabindex="-1"></a><span class="fu">library</span>(srvyr)</span>
+<span id="cb9-4"><a href="session-2--generalized-variance-function.html#cb9-4" tabindex="-1"></a><span class="fu">library</span>(TeachingSampling)</span>
+<span id="cb9-5"><a href="session-2--generalized-variance-function.html#cb9-5" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb9-6"><a href="session-2--generalized-variance-function.html#cb9-6" tabindex="-1"></a> </span>
+<span id="cb9-7"><a href="session-2--generalized-variance-function.html#cb9-7" tabindex="-1"></a><span class="co">#read in data set</span></span>
+<span id="cb9-8"><a href="session-2--generalized-variance-function.html#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="session-2--generalized-variance-function.html#cb9-9" tabindex="-1"></a><span class="co"># Q518A: Gross average income From Employment</span></span>
+<span id="cb9-10"><a href="session-2--generalized-variance-function.html#cb9-10" tabindex="-1"></a>  </span>
+<span id="cb9-11"><a href="session-2--generalized-variance-function.html#cb9-11" tabindex="-1"></a>encuesta <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&quot;Recursos/02_FGV/01_data_JAM.rds&quot;</span>) </span>
+<span id="cb9-12"><a href="session-2--generalized-variance-function.html#cb9-12" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="session-2--generalized-variance-function.html#cb9-13" tabindex="-1"></a>encuesta <span class="ot">&lt;-</span></span>
+<span id="cb9-14"><a href="session-2--generalized-variance-function.html#cb9-14" tabindex="-1"></a>  encuesta <span class="sc">%&gt;%</span></span>
+<span id="cb9-15"><a href="session-2--generalized-variance-function.html#cb9-15" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-16"><a href="session-2--generalized-variance-function.html#cb9-16" tabindex="-1"></a>    dam2,</span>
+<span id="cb9-17"><a href="session-2--generalized-variance-function.html#cb9-17" tabindex="-1"></a>    <span class="at">fep =</span> RFACT<span class="sc">/</span><span class="dv">4</span>,</span>
+<span id="cb9-18"><a href="session-2--generalized-variance-function.html#cb9-18" tabindex="-1"></a>    <span class="at">upm =</span> <span class="fu">paste0</span>(PAR_COD , CONST_NUMBER, ED_NUMBER),</span>
+<span id="cb9-19"><a href="session-2--generalized-variance-function.html#cb9-19" tabindex="-1"></a>    <span class="at">estrato =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(STRATA) ,strata,STRATA),</span>
+<span id="cb9-20"><a href="session-2--generalized-variance-function.html#cb9-20" tabindex="-1"></a>    <span class="at">ingreso =</span> <span class="fu">case_when</span>(<span class="sc">!</span><span class="fu">is.na</span>(Q518A) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Q518B) <span class="sc">~</span> Q518A <span class="sc">+</span> Q518B, </span>
+<span id="cb9-21"><a href="session-2--generalized-variance-function.html#cb9-21" tabindex="-1"></a>                        <span class="sc">!</span><span class="fu">is.na</span>(Q518A) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Q518B) <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb9-22"><a href="session-2--generalized-variance-function.html#cb9-22" tabindex="-1"></a>                        <span class="sc">!</span><span class="fu">is.na</span>(Q518A) <span class="sc">&amp;</span> <span class="fu">is.na</span>(Q518B) <span class="sc">~</span> Q518A,</span>
+<span id="cb9-23"><a href="session-2--generalized-variance-function.html#cb9-23" tabindex="-1"></a>                        <span class="fu">is.na</span>(Q518A) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Q518B) <span class="sc">~</span> Q518B),</span>
+<span id="cb9-24"><a href="session-2--generalized-variance-function.html#cb9-24" tabindex="-1"></a>    <span class="at">pobreza =</span> <span class="fu">ifelse</span>(ingreso <span class="sc">&lt;</span> <span class="dv">50</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb9-25"><a href="session-2--generalized-variance-function.html#cb9-25" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ingreso <span class="sc">&gt;</span> <span class="dv">11</span>)</span></code></pre></div>
+<p><em>dam2</em>: Corresponds to the code assigned to the country’s second administrative division.</p>
+<p><strong>The income definition is structured in this manner to illustrate the process utilized in the small area estimation methodology for poverty estimation.</strong></p>
+<table class="table table-striped lightable-classic" style="width: auto !important; margin-left: auto; margin-right: auto; font-family: Arial Narrow; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+ID
+</th>
+<th style="text-align:right;">
+QUARTER
+</th>
+<th style="text-align:right;">
+EMPSTATUS
+</th>
+<th style="text-align:left;">
+STRATA
+</th>
+<th style="text-align:left;">
+CLUSTER
+</th>
+<th style="text-align:left;">
+CONST_NUMBER
+</th>
+<th style="text-align:left;">
+ED_NUMBER
+</th>
+<th style="text-align:left;">
+URCODE
+</th>
+<th style="text-align:right;">
+SEX
+</th>
+<th style="text-align:right;">
+AGE
+</th>
+<th style="text-align:right;">
+Q518A
+</th>
+<th style="text-align:right;">
+Q518AP
+</th>
+<th style="text-align:right;">
+Q518B
+</th>
+<th style="text-align:right;">
+Q518BP
+</th>
+<th style="text-align:right;">
+RFACT
+</th>
+<th style="text-align:left;">
+PAR_COD
+</th>
+<th style="text-align:left;">
+PARISH
+</th>
+<th style="text-align:left;">
+strata
+</th>
+<th style="text-align:left;">
+cluster
+</th>
+<th style="text-align:left;">
+dam2
+</th>
+<th style="text-align:right;">
+fep
+</th>
+<th style="text-align:left;">
+upm
+</th>
+<th style="text-align:left;">
+estrato
+</th>
+<th style="text-align:right;">
+ingreso
+</th>
+<th style="text-align:right;">
+pobreza
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+02010105902170101
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+014
+</td>
+<td style="text-align:left;">
+014011
+</td>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+059
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+9e+00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+127.4657
+</td>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+Kingston
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+0101
+</td>
+<td style="text-align:right;">
+31.8664
+</td>
+<td style="text-align:left;">
+0101059
+</td>
+<td style="text-align:left;">
+014
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+02020207900130103
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+235
+</td>
+<td style="text-align:left;">
+235472
+</td>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+079
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1e+05
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+164.6809
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+Manchester
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1202
+</td>
+<td style="text-align:right;">
+41.1702
+</td>
+<td style="text-align:left;">
+1202079
+</td>
+<td style="text-align:left;">
+235
+</td>
+<td style="text-align:right;">
+100000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+02020404901820105
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+239
+</td>
+<td style="text-align:left;">
+239488
+</td>
+<td style="text-align:left;">
+04
+</td>
+<td style="text-align:left;">
+049
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1e+04
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+152.1773
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+Manchester
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1204
+</td>
+<td style="text-align:right;">
+38.0443
+</td>
+<td style="text-align:left;">
+1204049
+</td>
+<td style="text-align:left;">
+239
+</td>
+<td style="text-align:right;">
+10000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+04010400700370102
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+036
+</td>
+<td style="text-align:left;">
+036073
+</td>
+<td style="text-align:left;">
+04
+</td>
+<td style="text-align:left;">
+007
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+9e+00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+188.7227
+</td>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+St Andrew
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+0204
+</td>
+<td style="text-align:right;">
+47.1807
+</td>
+<td style="text-align:left;">
+0204007
+</td>
+<td style="text-align:left;">
+036
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+04030406400160106
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+221
+</td>
+<td style="text-align:left;">
+221453
+</td>
+<td style="text-align:left;">
+04
+</td>
+<td style="text-align:left;">
+064
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+15000
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0e+00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+308.0567
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+St Elizabeth
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1104
+</td>
+<td style="text-align:right;">
+77.0142
+</td>
+<td style="text-align:left;">
+1104064
+</td>
+<td style="text-align:left;">
+221
+</td>
+<td style="text-align:right;">
+15000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+05020506600550101
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+164
+</td>
+<td style="text-align:left;">
+164352
+</td>
+<td style="text-align:left;">
+05
+</td>
+<td style="text-align:left;">
+066
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+9e+00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+94.0227
+</td>
+<td style="text-align:left;">
+08
+</td>
+<td style="text-align:left;">
+St James
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+0805
+</td>
+<td style="text-align:right;">
+23.5057
+</td>
+<td style="text-align:left;">
+0805066
+</td>
+<td style="text-align:left;">
+164
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+06030106300920101
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+122
+</td>
+<td style="text-align:left;">
+122227
+</td>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+063
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+9e+00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+252.1380
+</td>
+<td style="text-align:left;">
+05
+</td>
+<td style="text-align:left;">
+St Mary
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+0501
+</td>
+<td style="text-align:right;">
+63.0345
+</td>
+<td style="text-align:left;">
+0501063
+</td>
+<td style="text-align:left;">
+122
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+06030200300140102
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+228
+</td>
+<td style="text-align:left;">
+228464
+</td>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+003
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+9e+00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+49.1197
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+Manchester
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1202
+</td>
+<td style="text-align:right;">
+12.2799
+</td>
+<td style="text-align:left;">
+1202003
+</td>
+<td style="text-align:left;">
+228
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+06030204100960101
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+084
+</td>
+<td style="text-align:left;">
+084180
+</td>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+041
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+9e+00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+97.2597
+</td>
+<td style="text-align:left;">
+03
+</td>
+<td style="text-align:left;">
+St Thomas
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+0302
+</td>
+<td style="text-align:right;">
+24.3149
+</td>
+<td style="text-align:left;">
+0302041
+</td>
+<td style="text-align:left;">
+084
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+06030208501550102
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+234
+</td>
+<td style="text-align:left;">
+234474
+</td>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+085
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3e+04
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+70.9262
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+Manchester
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1202
+</td>
+<td style="text-align:right;">
+17.7315
+</td>
+<td style="text-align:left;">
+1202085
+</td>
+<td style="text-align:left;">
+234
+</td>
+<td style="text-align:right;">
+30000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p>In the following code block, the libraries <code>survey</code> and <code>srvyr</code> are used to create a sampling design from a survey database. The sampling design encompasses information about primary sampling units (PSUs), sampling weights (wkx), and strata (estrato) utilized in the sampling. Additionally, the “survey.lonely.psu” option is employed to adjust sample sizes within groups of primary sampling units that lack other primary sampling units within the same group.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="session-2--generalized-variance-function.html#cb10-1" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
+<span id="cb10-2"><a href="session-2--generalized-variance-function.html#cb10-2" tabindex="-1"></a><span class="fu">library</span>(srvyr)</span>
+<span id="cb10-3"><a href="session-2--generalized-variance-function.html#cb10-3" tabindex="-1"></a><span class="fu">options</span>(<span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>)</span>
+<span id="cb10-4"><a href="session-2--generalized-variance-function.html#cb10-4" tabindex="-1"></a>id_dominio <span class="ot">&lt;-</span> <span class="st">&quot;dam2&quot;</span></span>
+<span id="cb10-5"><a href="session-2--generalized-variance-function.html#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="session-2--generalized-variance-function.html#cb10-6" tabindex="-1"></a>diseno <span class="ot">&lt;-</span></span>
+<span id="cb10-7"><a href="session-2--generalized-variance-function.html#cb10-7" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(</span>
+<span id="cb10-8"><a href="session-2--generalized-variance-function.html#cb10-8" tabindex="-1"></a>    <span class="at">ids =</span> upm,</span>
+<span id="cb10-9"><a href="session-2--generalized-variance-function.html#cb10-9" tabindex="-1"></a>    <span class="at">weights =</span> fep,</span>
+<span id="cb10-10"><a href="session-2--generalized-variance-function.html#cb10-10" tabindex="-1"></a>    <span class="at">strata =</span> estrato,</span>
+<span id="cb10-11"><a href="session-2--generalized-variance-function.html#cb10-11" tabindex="-1"></a>    <span class="at">nest =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-12"><a href="session-2--generalized-variance-function.html#cb10-12" tabindex="-1"></a>    <span class="at">.data =</span> encuesta</span>
+<span id="cb10-13"><a href="session-2--generalized-variance-function.html#cb10-13" tabindex="-1"></a>  )</span>
+<span id="cb10-14"><a href="session-2--generalized-variance-function.html#cb10-14" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="session-2--generalized-variance-function.html#cb10-15" tabindex="-1"></a><span class="co">#summary(diseno)</span></span></code></pre></div>
+<p>´</p>
+<ol style="list-style-type: decimal">
+<li><strong>Indicator Calculation:</strong>
+<ul>
+<li>Groups the sampling design by domain ID and calculates indicators related to poverty (<code>n_pobreza</code> and <code>pobreza</code>). <code>n_pobreza</code> counts the number of instances where <code>pobreza</code> equals 1 (indicating poverty), while <code>pobreza</code> computes the survey mean of the <code>pobreza</code> variable with specific variance estimations.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="session-2--generalized-variance-function.html#cb11-1" tabindex="-1"></a><span class="co"># Calculating indicators related to poverty and counts of UPMS per domain</span></span>
+<span id="cb11-2"><a href="session-2--generalized-variance-function.html#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="session-2--generalized-variance-function.html#cb11-3" tabindex="-1"></a><span class="co"># Indicator Calculation:</span></span>
+<span id="cb11-4"><a href="session-2--generalized-variance-function.html#cb11-4" tabindex="-1"></a><span class="co"># Grouping the sampling design by domain ID and summarizing variables related to poverty.</span></span>
+<span id="cb11-5"><a href="session-2--generalized-variance-function.html#cb11-5" tabindex="-1"></a>indicador_dam <span class="ot">&lt;-</span></span>
+<span id="cb11-6"><a href="session-2--generalized-variance-function.html#cb11-6" tabindex="-1"></a>  diseno <span class="sc">%&gt;%</span> <span class="fu">group_by_at</span>(id_dominio) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-7"><a href="session-2--generalized-variance-function.html#cb11-7" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-8"><a href="session-2--generalized-variance-function.html#cb11-8" tabindex="-1"></a>    <span class="at">n_pobreza =</span> <span class="fu">unweighted</span>(<span class="fu">sum</span>(pobreza <span class="sc">==</span> <span class="dv">1</span>)),</span>
+<span id="cb11-9"><a href="session-2--generalized-variance-function.html#cb11-9" tabindex="-1"></a>    <span class="at">pobreza =</span> <span class="fu">survey_mean</span>(pobreza,</span>
+<span id="cb11-10"><a href="session-2--generalized-variance-function.html#cb11-10" tabindex="-1"></a>                          <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">&quot;se&quot;</span>,  <span class="st">&quot;var&quot;</span>),</span>
+<span id="cb11-11"><a href="session-2--generalized-variance-function.html#cb11-11" tabindex="-1"></a>                          <span class="at">deff =</span> T</span>
+<span id="cb11-12"><a href="session-2--generalized-variance-function.html#cb11-12" tabindex="-1"></a>    )</span>
+<span id="cb11-13"><a href="session-2--generalized-variance-function.html#cb11-13" tabindex="-1"></a>  )</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Counts of UPMS per Domain:</strong>
+<ul>
+<li>Extracts domain ID and UPMs from the survey dataset, obtaining unique UPMs per domain and counting them.</li>
+<li>Joins the count of unique UPMs per domain with the previously calculated indicators related to poverty.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="session-2--generalized-variance-function.html#cb12-1" tabindex="-1"></a><span class="co"># Counts of UPMS per domain:</span></span>
+<span id="cb12-2"><a href="session-2--generalized-variance-function.html#cb12-2" tabindex="-1"></a><span class="co"># Selecting domain ID and UPMs, obtaining unique UPMs per domain, and counting them.</span></span>
+<span id="cb12-3"><a href="session-2--generalized-variance-function.html#cb12-3" tabindex="-1"></a><span class="co"># Joining the count of unique UPMs per domain with previously calculated indicators related to poverty.</span></span>
+<span id="cb12-4"><a href="session-2--generalized-variance-function.html#cb12-4" tabindex="-1"></a>indicador_dam <span class="ot">&lt;-</span> encuesta <span class="sc">%&gt;%</span> <span class="fu">select</span>(id_dominio, upm) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="session-2--generalized-variance-function.html#cb12-5" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="session-2--generalized-variance-function.html#cb12-6" tabindex="-1"></a>  <span class="fu">group_by_at</span>(id_dominio) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-7"><a href="session-2--generalized-variance-function.html#cb12-7" tabindex="-1"></a>  <span class="fu">tally</span>(<span class="at">name =</span> <span class="st">&quot;n_upm&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-8"><a href="session-2--generalized-variance-function.html#cb12-8" tabindex="-1"></a>  <span class="fu">inner_join</span>(indicador_dam, <span class="at">by =</span> id_dominio)</span>
+<span id="cb12-9"><a href="session-2--generalized-variance-function.html#cb12-9" tabindex="-1"></a><span class="co"># saveRDS(directodam2, &quot;Recursos/02_FGV/indicador_dam.Rds&quot;)</span></span></code></pre></div>
+<table class="table table-striped lightable-classic" style="width: auto !important; margin-left: auto; margin-right: auto; font-family: Arial Narrow; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+dam2
+</th>
+<th style="text-align:right;">
+n_upm
+</th>
+<th style="text-align:right;">
+n_pobreza
+</th>
+<th style="text-align:right;">
+pobreza
+</th>
+<th style="text-align:right;">
+pobreza_se
+</th>
+<th style="text-align:right;">
+pobreza_var
+</th>
+<th style="text-align:right;">
+pobreza_deff
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+0101
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+237
+</td>
+<td style="text-align:right;">
+0.9980
+</td>
+<td style="text-align:right;">
+0.0021
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+5.228000e-01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0102
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+197
+</td>
+<td style="text-align:right;">
+0.9836
+</td>
+<td style="text-align:right;">
+0.0089
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+<td style="text-align:right;">
+1.053700e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0103
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+3.065785e+32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0201
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+244
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0202
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+141
+</td>
+<td style="text-align:right;">
+0.9391
+</td>
+<td style="text-align:right;">
+0.0292
+</td>
+<td style="text-align:right;">
+0.0009
+</td>
+<td style="text-align:right;">
+2.317700e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0203
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+0.8117
+</td>
+<td style="text-align:right;">
+0.0775
+</td>
+<td style="text-align:right;">
+0.0060
+</td>
+<td style="text-align:right;">
+4.795200e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0204
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+224
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0205
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:right;">
+0.9646
+</td>
+<td style="text-align:right;">
+0.0331
+</td>
+<td style="text-align:right;">
+0.0011
+</td>
+<td style="text-align:right;">
+2.932600e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0206
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+102
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0207
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+149
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NaN
+</td>
+</tr>
+</tbody>
+</table>
+<p>Ahora se realiza el filtro de los dominios con 5 o más UPMs y todos los que tengan un deff mayor que 1</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="session-2--generalized-variance-function.html#cb13-1" tabindex="-1"></a>base_sae <span class="ot">&lt;-</span> indicador_dam <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="session-2--generalized-variance-function.html#cb13-2" tabindex="-1"></a>  <span class="fu">filter</span>(n_upm <span class="sc">&gt;=</span> <span class="dv">5</span>,</span>
+<span id="cb13-3"><a href="session-2--generalized-variance-function.html#cb13-3" tabindex="-1"></a>         pobreza_deff <span class="sc">&gt;</span> <span class="dv">1</span>) </span></code></pre></div>
+<p>seguidamente se realiza la transformación <span class="math inline">\(\log(\hat{\sigma}^2_d)\)</span>, además se realiza la selección de las columnas identificador del municipio (<code>dam2</code>), la estimación directa (<code>pobreza</code>), El número de personas en el dominio (<code>nd</code>) y la varianza estimada del para la estimación directa <code>vardir</code>,siendo esta la que transforma mediante la función <code>log()</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="session-2--generalized-variance-function.html#cb14-1" tabindex="-1"></a>baseFGV <span class="ot">&lt;-</span>  base_sae <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="session-2--generalized-variance-function.html#cb14-2" tabindex="-1"></a>  <span class="fu">select</span>(dam2, pobreza, <span class="at">nd =</span> n_pobreza, <span class="at">vardir =</span> pobreza_var) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="session-2--generalized-variance-function.html#cb14-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ln_sigma2 =</span> <span class="fu">log</span>(vardir))</span></code></pre></div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="population-and-housing-censuses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="graphical-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/psirusteam/2021ASDA/02_S1_FGV.qmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Area models for estimating poverty and labor market indicators.pdf", "Area models for estimating poverty and labor market indicators.epub", "Area models for estimating poverty and labor market indicators.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"tconfig": null
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
