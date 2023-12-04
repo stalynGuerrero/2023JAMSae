@@ -1,0 +1,16 @@
+tab:unnamed-chunk-7
+tab:unnamed-chunk-8
+sesión-1--census-and-satellite-information
+use-of-satellite-imagery-and-sae
+satellite-image-data-sources
+google-earth-engine
+installing-rgee
+downloading-satellite-information
+night-lights
+crop-cover
+urban-cover
+human-modification
+average-travel-time-to-hospital
+average-travel-time-to-hospital-by-non-motorized-vehicle
+population-and-housing-censuses
+mapas-de-las-variables-con-información-censal.
