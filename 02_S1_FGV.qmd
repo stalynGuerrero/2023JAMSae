@@ -103,6 +103,7 @@ encuesta <-
                         is.na(Q518A) & !is.na(Q518B) ~ Q518B),
     pobreza = ifelse(ingreso < 50,1,0)
   ) %>% filter(ingreso > 11)
+
 ```
 
 *dam2*: Corresponds to the code assigned to the country's second administrative division.

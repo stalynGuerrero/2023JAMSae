@@ -1,0 +1,442 @@
+## Area models - ArcSin transformation.
+
+```{r setup, include=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE)
+
+library(printr)
+library(kableExtra)
+library(tidyverse)
+tba <- function(dat, cap = NA){
+  kable(dat,
+      format = "html", digits =  4,
+      caption = cap) %>% 
+     kable_styling(bootstrap_options = "striped", full_width = F)%>%
+         kable_classic(full_width = F, html_font = "Arial Narrow")
+}
+
+```
+
+In its most basic conception, the **Fay-Herriot** model is a linear combination of covariates. However, the result of this combination can take values that fall outside the acceptable range for a proportion; that is, generally, the Fay-Herriot estimator $\theta \in \mathbb{R}$, whereas the direct estimator $\theta \in (0,1)$. The arcsine transformation is given by:
+
+$$
+\hat{z}_d = \arcsin\left( \sqrt{ \hat{\theta}_d} \right)
+$$ 
+
+where 
+
+$$
+Var\left( \hat{z}_d \right) = \frac{\widehat{DEFF}_d}{4\times n_d} = \frac{1}{4\times n_{d, \text{effective}} }
+$$
+
+The Fay-Herriot model is defined as follows:
+
+$$
+\begin{align*}
+Z_d \mid \mu_d,\sigma^2_d &  \sim  N(\mu_d, \sigma^2_d)\\
+\mu_d & = \boldsymbol{x}^{T}_{d}\boldsymbol{\beta} + u_d \\
+\theta_d & =  \left(\sin(\mu_d)\right)^2
+\end{align*}
+$$ 
+
+where $u_d \sim N(0 , \sigma^2)$.
+
+Let the prior distributions for $\boldsymbol{\beta}$ and $\sigma_{u}^{2}$ be given by:
+
+$$
+\begin{align*}
+\boldsymbol{\beta}	\sim	N\left(0,1000 \right)\\
+\sigma_{u}^{2}	\sim	\text{IG}\left(0.0001,0.0001\right)
+\end{align*}
+$$
+
+### Estimation procedure
+
+Reading the database that resulted in the previous step and selecting the columns of interest
+
+```{r}
+library(tidyverse)
+library(magrittr)
+
+base_FH <- readRDS('Recursos/04_FH_Arcosin/01_base_FH.Rds') %>% 
+transmute(dam2,                            ## id dominios
+          pobreza,
+          T_pobreza = asin(sqrt(pobreza)),  ## creando zd
+          n_effec = n_eff_FGV,              ## n efectivo
+          varhat = 1/(4*n_effec)            ## varianza para zd
+)
+
+```
+
+Joining the two databases.
+
+```{r}
+statelevel_predictors_df <-
+  readRDS('Recursos/03_FH_normal/02_statelevel_predictors_dam.rds') %>%
+  mutate(id_order = 1:n())
+base_FH <-
+  full_join(base_FH, statelevel_predictors_df, by = "dam2")
+tba(base_FH[, 1:8] %>% head(10))
+```
+
+Selecting the covariates for the model.
+
+```{r}
+names_cov <-
+    c(
+       "ODDJOB","WORKED",
+      "stable_lights_mean",
+      "accessibility_mean",
+      "urban.coverfraction_sum"
+    )
+
+```
+
+### Preparing Inputs for `STAN`
+
+1. Splitting the database into observed and unobserved domains
+
+Observed domains.
+```{r}
+data_dir <- base_FH %>% filter(!is.na(T_pobreza))
+```
+
+Unobserved domains.
+```{r}
+data_syn <-
+  base_FH %>% anti_join(data_dir %>% select(dam2))
+
+```
+
+2. Defining the fixed-effects matrix.
+
+```{r}
+## Observed domains
+Xdat <- cbind(inter = 1,data_dir[,names_cov])
+
+## Unobserved domains
+Xs <-  cbind(inter = 1,data_syn[,names_cov])
+```
+
+3. Creating a parameter list for `STAN`.
+
+```{r}
+sample_data <- list(
+  N1 = nrow(Xdat),       # Observed.
+  N2 = nrow(Xs),         # Unobserved.
+  p  = ncol(Xdat),       # Number of regressors.
+  X  = as.matrix(Xdat),  # Observed Covariates.
+  Xs = as.matrix(Xs),    # Unobserved Covariates
+  y  = as.numeric(data_dir$T_pobreza),
+  sigma_e = sqrt(data_dir$varhat)
+)
+```
+
+4. Compiling the model in `STAN`.
+  
+```{r, eval=FALSE}
+library(rstan)
+fit_FH_arcoseno <- "Recursos/04_FH_Arcosin/modelosStan/15FH_arcsin_normal.stan"
+options(mc.cores = parallel::detectCores())
+rstan::rstan_options(auto_write = TRUE) # speed up running time 
+model_FH_arcoseno <- stan(
+  file = fit_FH_arcoseno,  
+  data = sample_data,   
+  verbose = FALSE,
+  warmup = 2500,         
+  iter = 3000,            
+  cores = 4              
+)
+saveRDS(model_FH_arcoseno,
+        "Recursos/04_FH_Arcosin/02_model_FH_arcoseno.rds")
+
+```
+
+```{r, eval=FALSE}
+model_FH_arcoseno <- readRDS("Recursos/04_FH_Arcosin/02_model_FH_arcoseno.rds")
+```
+
+
+#### Resultados del modelo para los dominios observados. 
+
+
+```{r, eval=FALSE}
+library(bayesplot)
+library(patchwork)
+library(posterior)
+
+y_pred_B <- as.array(model_FH_arcoseno, pars = "theta") %>% 
+  as_draws_matrix()
+rowsrandom <- sample(nrow(y_pred_B), 100)
+
+y_pred2 <- y_pred_B[rowsrandom, ]
+ppc_dens_overlay(y = as.numeric(data_dir$pobreza), y_pred2)
+
+```
+![](Recursos/04_FH_Arcosin/03_ppc_Arcosin.png)
+
+Graphical analysis of the convergence of $\sigma^2_u$ chains.
+
+```{r, eval=FALSE}
+posterior_sigma2_u <- as.array(model_FH_arcoseno, pars = "sigma2_u")
+(mcmc_dens_chains(posterior_sigma2_u) +
+    mcmc_areas(posterior_sigma2_u) ) / 
+  mcmc_trace(posterior_sigma2_u)
+```
+
+![](Recursos/04_FH_Arcosin/04_sigma2.png)
+
+
+
+To validate the convergence of all chains, the *R-hat* is used.
+
+```{r, eval=FALSE}
+parametros <- summary(model_FH_arcoseno, pars =  c("theta", "theta_pred") )$summary %>%
+  data.frame()
+p1 <- mcmc_rhat(parametros$Rhat)
+p1
+```
+
+![](Recursos/04_FH_Arcosin/05_Rhat.png)
+
+
+Estimation of the FH of poverty in the observed domains.
+
+```{r, eval=FALSE}
+theta_FH <-   summary(model_FH_arcoseno,pars =  "theta")$summary %>%
+  data.frame()
+data_dir %<>% mutate(pred_arcoseno = theta_FH$mean, 
+                     pred_arcoseno_EE = theta_FH$sd,
+                     Cv_pred = pred_arcoseno_EE/pred_arcoseno)
+```
+
+Estimation of the FH of poverty in the NOT observed domains.
+
+```{r, eval=FALSE}
+theta_FH_pred <- summary(model_FH_arcoseno,pars =  "theta_pred")$summary %>%
+  data.frame()
+data_syn <- data_syn %>% 
+  mutate(pred_arcoseno = theta_FH_pred$mean,
+         pred_arcoseno_EE = theta_FH_pred$sd,
+         Cv_pred = pred_arcoseno_EE/pred_arcoseno)
+
+
+```
+
+```{r, echo=FALSE, eval=TRUE}
+# saveRDS(data_dir, "Recursos/04_FH_Arcosin/data_dir.rds")
+# saveRDS(data_syn, "Recursos/04_FH_Arcosin/data_syn.rds")
+
+data_dir <- readRDS("Recursos/04_FH_Arcosin/data_dir.rds")
+data_syn <- readRDS("Recursos/04_FH_Arcosin/data_syn.rds")
+tba(data_syn %>% slice(1:10) %>%
+      select(dam2, pobreza,pred_arcoseno:Cv_pred))
+
+```
+
+
+
+consolidating the bases of estimates for observed and UNobserved domains.
+
+```{r}
+estimacionesPre <- bind_rows(data_dir, data_syn) %>% 
+  select(dam2, theta_pred = pred_arcoseno) %>% 
+  mutate(dam = substr(dam2,1,2))
+```
+
+
+## Benchmark Process
+
+1. From the census extract the total number of people by DAM2
+
+
+```{r}
+total_pp <- readRDS(file = "Recursos/04_FH_Arcosin/06_censo_mrp.rds") %>% 
+   mutate(dam = substr(dam2,1,2))
+
+
+N_dam_pp <- total_pp %>%   group_by(dam,dam2) %>%  
+            summarise(total_pp = sum(n) ) %>% 
+  group_by(dam) %>% mutate(dam_pp = sum(total_pp))
+
+tba(N_dam_pp %>% data.frame() %>% slice(1:10))
+```
+
+
+2. Obtaining direct estimates by DAM or the level of aggregation at which the survey is representative.
+
+In this code, an RDS file of a survey (`07_data_JAM.rds`) is read, and the `transmute()` function is used to select and transform the variables of interest.
+
+```{r}
+encuesta <- readRDS("Recursos/04_FH_Arcosin/07_encuesta.rds") %>% 
+   mutate(dam = substr(dam2,1,2))
+
+```
+
+The code is conducting survey data analysis using the `survey` package in R. Initially, an object `design` is created as a survey design using the `as_survey_design()` function from the `srvyr` package. This design includes primary sampling unit identifiers (`upm`), weights (`fep`), strata (`estrato`), and survey data (`encuesta`). Subsequently, the `design` object is grouped by the variable "Aggregate," and the mean of the variable "pobreza" with a confidence interval for the entire population is calculated using the `survey_mean()` function. The result is stored in the `directoDam` object and displayed in a table.
+
+
+```{r}
+library(survey)
+library(srvyr)
+options(survey.lonely.psu = "adjust")
+
+diseno <-
+  as_survey_design(
+    ids = upm,
+    weights = fep,
+    strata = estrato,
+    nest = TRUE,
+    .data = encuesta
+  )
+directoDam <- diseno %>% 
+    group_by(dam) %>% 
+  summarise(
+    theta_dir = survey_mean(pobreza, vartype = c("ci"))
+    )
+tba(directoDam %>% slice(1:10))
+```
+
+
+3. Carry out the consolidation of information obtained in *1* and *2*.
+
+```{r}
+temp <- estimacionesPre %>%
+  inner_join(N_dam_pp ) %>% 
+  inner_join(directoDam )
+
+tba(temp %>% slice(1:10))
+```
+
+4. With the organized information, calculate the weights for the Benchmark
+
+
+```{r}
+R_dam2 <- temp %>% group_by(dam) %>% 
+  summarise(
+  R_dam_RB = unique(theta_dir) / sum((total_pp  / dam_pp) * theta_pred)
+) %>%
+  left_join(directoDam, by = "dam")
+
+tba(R_dam2 %>% arrange(desc(R_dam_RB)))
+
+```
+calculating the weights for each domain.
+
+```{r}
+pesos <- temp %>% 
+  mutate(W_i = total_pp / dam_pp) %>% 
+  select(dam2, W_i)
+tba(pesos %>% slice(1:10))
+```
+
+
+5. Perform FH Benchmark Estimation
+
+```{r}
+
+estimacionesBench <- estimacionesPre %>%
+  left_join(R_dam2, by = c("dam")) %>%
+  mutate(theta_pred_RBench = R_dam_RB * theta_pred) %>%
+  left_join(pesos) %>% 
+  select(dam, dam2, W_i, theta_pred, theta_pred_RBench)  
+
+  tba(estimacionesBench %>% slice(1:10))
+
+```
+
+6. Validation: FH Estimation with Benchmark
+
+```{r}
+estimacionesBench %>% group_by(dam) %>%
+  summarise(theta_reg_RB = sum(W_i * theta_pred_RBench)) %>%
+  left_join(directoDam, by = "dam") %>% 
+  tba()
+
+```
+
+### Results Validation
+
+This code conducts data analysis and visualization using the `ggplot2` library. Specifically, it merges two `data frames` using the `left_join()` function, groups the data by the `dam` variable, and performs some operations to transform the `thetaFH` and `theta_pred_RBench` variables. Afterwards, it utilizes the `gather()` function to organize the data in a long format and visualizes it with `ggplot()`.
+
+The resulting visualization displays points in different shapes and colors, representing various estimation methods. Additionally, it includes two dashed lines that depict the upper and lower confidence intervals for the observed values in the `theta_dir` variable.
+
+
+```{r, eval=FALSE}
+temp <- estimacionesBench %>% left_join(
+bind_rows(
+data_dir %>% select(dam2, thetaFH = pred_arcoseno),
+data_syn %>% select(dam2, thetaFH = pred_arcoseno))) %>% 
+group_by(dam) %>% 
+summarise(thetaFH = sum(W_i * theta_pred),
+          theta_RBench = sum(W_i * theta_pred_RBench)
+          ) %>%   
+left_join(directoDam, by = "dam")  %>% 
+mutate(id = 1:n())
+
+temp %<>% gather(key = "Metodo",value = "Estimacion",
+                -id, -dam, -theta_dir_upp, -theta_dir_low)
+
+p1 <- ggplot(data = temp, aes(x = id, y = Estimacion, shape = Metodo)) +
+  geom_point(aes(color = Metodo), size = 2) +
+  geom_line(aes(y = theta_dir_low), linetype  = 2) +
+  geom_line(aes(y = theta_dir_upp),  linetype  = 2) +
+  theme_bw(20) + 
+  scale_x_continuous(breaks = temp$id,
+    labels =  temp$dam) +
+  labs(y = "", x = "")
+
+# ggsave(plot = p1,
+#        filename = "Recursos/04_FH_Arcosin/08_validar_bench.png",width = 16,height = 12)
+p1 
+```
+
+![](Recursos/04_FH_Arcosin/08_validar_bench.png)
+
+
+
+## Poverty Map
+
+This code block loads various packages (`sf`, `tmap`) and performs several operations. Initially, it conducts a `left_join` between the benchmark-adjusted estimates (`estimacionesBench`) and the model estimates (`data_dir`, `data_syn`), utilizing the `dam2` variable as the key for the join. Subsequently, it reads a `Shapefile` containing geospatial information for the country. Then, it creates a thematic map (`tmap`) using the `tm_shape()` function and adds layers using the `tm_polygons()` function. The map represents a variable `theta_pred_RBench` utilizing a color palette named "YlOrRd" and sets the intervals' breaks for the variable with the variable `brks_lp`. Finally, the `tm_layout()` function sets some design parameters for the map, such as the aspect ratio (asp).
+
+
+```{r, out.height= "120%", eval=FALSE}
+library(sf)
+library(tmap)
+
+estimacionesBench %<>% left_join(
+bind_rows(
+data_dir %>% select(dam2, pobreza, pred_arcoseno_EE , Cv_pred),
+data_syn %>% select(dam2,pobreza, pred_arcoseno_EE , Cv_pred)))
+
+## Leer Shapefile del país
+ShapeSAE <- read_sf("Shapefile/JAM2_cons.shp")
+
+
+mapa <- tm_shape(ShapeSAE %>%
+                   left_join(estimacionesBench,  by = "dam2"))
+
+tmap_options(check.and.fix = TRUE)
+Mapa_lp <-
+  mapa + tm_polygons(
+    c("pobreza","theta_pred_RBench"),
+    title = "Poverty map",
+    palette = "YlOrRd",
+    colorNA = "white"
+  ) + tm_layout(asp = 1.5)
+
+tmap_save(Mapa_lp, 
+          filename = "Recursos/04_FH_Arcosin/09_map.png",
+           width = 2500,
+  height = 2000,
+  asp = 0)
+Mapa_lp
+```
+
+![](Recursos/04_FH_Arcosin/09_map.png)
+
+
+

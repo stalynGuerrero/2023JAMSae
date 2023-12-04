@@ -1,4 +1,4 @@
-# Session 1- Fay Herriot Model - Poverty Estimation
+# Session 3- Fay Herriot Model - Poverty Estimation
 
 
 
