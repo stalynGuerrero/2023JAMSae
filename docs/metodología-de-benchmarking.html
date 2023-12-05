@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.10 Metodología de Benchmarking | Area-models-for-estimating-poverty-and-labor-market-indicators</title>
+  <meta name="description" content="Area models for estimating poverty and labor market indicators" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.10 Metodología de Benchmarking | Area-models-for-estimating-poverty-and-labor-market-indicators" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Area models for estimating poverty and labor market indicators" />
+  <meta name="github-repo" content="psirusteam/HHS-Handbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.10 Metodología de Benchmarking | Area-models-for-estimating-poverty-and-labor-market-indicators" />
+  
+  <meta name="twitter:description" content="Area models for estimating poverty and labor market indicators" />
+  
+
+
+
+<meta name="date" content="2023-12-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estimation-of-standard-deviation-and-coefficient-of-variation.html"/>
+<link rel="next" href="labor-market-maps..html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Area models for estimating poverty and labor market indicators</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop material</a>
+<ul>
+<li class="chapter" data-level="" data-path="workshop-material-1.html"><a href="workshop-material-1.html"><i class="fa fa-check"></i>Workshop material</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="session-1--census-and-satellite-information.html"><a href="session-1--census-and-satellite-information.html"><i class="fa fa-check"></i><b>1</b> Session 1- Census and satellite information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="use-of-satellite-imagery-and-sae.html"><a href="use-of-satellite-imagery-and-sae.html"><i class="fa fa-check"></i><b>1.1</b> Use of Satellite Imagery and SAE</a></li>
+<li class="chapter" data-level="1.2" data-path="satellite-image-data-sources.html"><a href="satellite-image-data-sources.html"><i class="fa fa-check"></i><b>1.2</b> Satellite Image Data Sources</a></li>
+<li class="chapter" data-level="1.3" data-path="google-earth-engine.html"><a href="google-earth-engine.html"><i class="fa fa-check"></i><b>1.3</b> Google Earth Engine</a></li>
+<li class="chapter" data-level="1.4" data-path="installing-rgee.html"><a href="installing-rgee.html"><i class="fa fa-check"></i><b>1.4</b> Installing rgee</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="installing-rgee.html"><a href="installing-rgee.html#downloading-satellite-information"><i class="fa fa-check"></i><b>1.4.1</b> Downloading Satellite Information</a></li>
+<li class="chapter" data-level="1.4.2" data-path="installing-rgee.html"><a href="installing-rgee.html#night-lights"><i class="fa fa-check"></i><b>1.4.2</b> Night Lights</a></li>
+<li class="chapter" data-level="1.4.3" data-path="installing-rgee.html"><a href="installing-rgee.html#crop-cover"><i class="fa fa-check"></i><b>1.4.3</b> Crop Cover</a></li>
+<li class="chapter" data-level="1.4.4" data-path="installing-rgee.html"><a href="installing-rgee.html#urban-cover"><i class="fa fa-check"></i><b>1.4.4</b> Urban Cover</a></li>
+<li class="chapter" data-level="1.4.5" data-path="installing-rgee.html"><a href="installing-rgee.html#human-modification"><i class="fa fa-check"></i><b>1.4.5</b> Human Modification</a></li>
+<li class="chapter" data-level="1.4.6" data-path="installing-rgee.html"><a href="installing-rgee.html#average-travel-time-to-hospital"><i class="fa fa-check"></i><b>1.4.6</b> Average Travel Time to Hospital</a></li>
+<li class="chapter" data-level="1.4.7" data-path="installing-rgee.html"><a href="installing-rgee.html#average-travel-time-to-hospital-by-non-motorized-vehicle"><i class="fa fa-check"></i><b>1.4.7</b> Average Travel Time to Hospital by Non-Motorized Vehicle</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="population-and-housing-censuses.html"><a href="population-and-housing-censuses.html"><i class="fa fa-check"></i><b>1.5</b> Population and Housing Censuses</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="population-and-housing-censuses.html"><a href="population-and-housing-censuses.html#mapas-de-las-variables-con-información-censal."><i class="fa fa-check"></i><b>1.5.1</b> Mapas de las variables con información censal.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="session-2--generalized-variance-function.html"><a href="session-2--generalized-variance-function.html"><i class="fa fa-check"></i><b>2</b> Session 2- Generalized Variance Function</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="graphical-analysis.html"><a href="graphical-analysis.html"><i class="fa fa-check"></i><b>2.1</b> Graphical Analysis</a></li>
+<li class="chapter" data-level="2.2" data-path="variance-model.html"><a href="variance-model.html"><i class="fa fa-check"></i><b>2.2</b> Variance Model</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="session-3--fay-herriot-model---poverty-estimation.html"><a href="session-3--fay-herriot-model---poverty-estimation.html"><i class="fa fa-check"></i><b>3</b> Session 3- Fay Herriot Model - Poverty Estimation</a>
+<ul>
+<li class="chapter" data-level="" data-path="session-3--fay-herriot-model---poverty-estimation.html"><a href="session-3--fay-herriot-model---poverty-estimation.html#area-model-for-poverty-estimation"><i class="fa fa-check"></i>Area Model for Poverty Estimation</a></li>
+<li class="chapter" data-level="" data-path="session-3--fay-herriot-model---poverty-estimation.html"><a href="session-3--fay-herriot-model---poverty-estimation.html#optimal-predictor-of-p_d"><i class="fa fa-check"></i>Optimal Predictor of <span class="math inline">\(P_d\)</span></a></li>
+<li class="chapter" data-level="3.1" data-path="estimation-procedure.html"><a href="estimation-procedure.html"><i class="fa fa-check"></i><b>3.1</b> Estimation Procedure</a></li>
+<li class="chapter" data-level="3.2" data-path="preparing-the-supplies-for-stan.html"><a href="preparing-the-supplies-for-stan.html"><i class="fa fa-check"></i><b>3.2</b> Preparing the supplies for <code>STAN</code></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="preparing-the-supplies-for-stan.html"><a href="preparing-the-supplies-for-stan.html#results-of-the-model-for-observed-domains."><i class="fa fa-check"></i><b>3.2.1</b> Results of the model for observed domains.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="area-models---arcsin-transformation..html"><a href="area-models---arcsin-transformation..html"><i class="fa fa-check"></i><b>3.3</b> Area models - ArcSin transformation.</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="area-models---arcsin-transformation..html"><a href="area-models---arcsin-transformation..html#estimation-procedure-1"><i class="fa fa-check"></i><b>3.3.1</b> Estimation procedure</a></li>
+<li class="chapter" data-level="3.3.2" data-path="area-models---arcsin-transformation..html"><a href="area-models---arcsin-transformation..html#preparing-inputs-for-stan"><i class="fa fa-check"></i><b>3.3.2</b> Preparing Inputs for <code>STAN</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="benchmark-process.html"><a href="benchmark-process.html"><i class="fa fa-check"></i><b>3.4</b> Benchmark Process</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="benchmark-process.html"><a href="benchmark-process.html#results-validation"><i class="fa fa-check"></i><b>3.4.1</b> Results Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="poverty-map.html"><a href="poverty-map.html"><i class="fa fa-check"></i><b>3.5</b> Poverty Map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="session-4---area-model-for-labor-market-statistics.html"><a href="session-4---area-model-for-labor-market-statistics.html"><i class="fa fa-check"></i><b>4</b> Session 4 - Area model for labor market statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="definition-of-the-multinomial-model.html"><a href="definition-of-the-multinomial-model.html"><i class="fa fa-check"></i><b>4.1</b> Definition of the Multinomial Model</a></li>
+<li class="chapter" data-level="4.2" data-path="loading-libraries.html"><a href="loading-libraries.html"><i class="fa fa-check"></i><b>4.2</b> Loading Libraries</a></li>
+<li class="chapter" data-level="4.3" data-path="reading-the-survey-and-direct-estimates.html"><a href="reading-the-survey-and-direct-estimates.html"><i class="fa fa-check"></i><b>4.3</b> Reading the survey and direct estimates</a></li>
+<li class="chapter" data-level="4.4" data-path="domain-selection.html"><a href="domain-selection.html"><i class="fa fa-check"></i><b>4.4</b> Domain Selection</a></li>
+<li class="chapter" data-level="4.5" data-path="modeling-in-stan.html"><a href="modeling-in-stan.html"><i class="fa fa-check"></i><b>4.5</b> Modeling in <code>STAN</code></a></li>
+<li class="chapter" data-level="4.6" data-path="preparing-supplies-for-stan.html"><a href="preparing-supplies-for-stan.html"><i class="fa fa-check"></i><b>4.6</b> Preparing supplies for <code>STAN</code></a></li>
+<li class="chapter" data-level="4.7" data-path="model-validation.html"><a href="model-validation.html"><i class="fa fa-check"></i><b>4.7</b> Model validation</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-validation.html"><a href="model-validation.html#fixed-effects"><i class="fa fa-check"></i>Fixed effects</a></li>
+<li class="chapter" data-level="" data-path="model-validation.html"><a href="model-validation.html#random-effects"><i class="fa fa-check"></i>Random effects</a></li>
+<li class="chapter" data-level="4.7.1" data-path="model-validation.html"><a href="model-validation.html#posterior-predictive-distribution"><i class="fa fa-check"></i><b>4.7.1</b> Posterior predictive distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="parameter-estimation..html"><a href="parameter-estimation..html"><i class="fa fa-check"></i><b>4.8</b> Parameter estimation.</a></li>
+<li class="chapter" data-level="4.9" data-path="estimation-of-standard-deviation-and-coefficient-of-variation.html"><a href="estimation-of-standard-deviation-and-coefficient-of-variation.html"><i class="fa fa-check"></i><b>4.9</b> Estimation of Standard Deviation and Coefficient of Variation</a></li>
+<li class="chapter" data-level="4.10" data-path="metodología-de-benchmarking.html"><a href="metodología-de-benchmarking.html"><i class="fa fa-check"></i><b>4.10</b> Metodología de Benchmarking</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="metodología-de-benchmarking.html"><a href="metodología-de-benchmarking.html#grafico-de-validación-del-benchmarking"><i class="fa fa-check"></i><b>4.10.1</b> Grafico de validación del Benchmarking</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="labor-market-maps..html"><a href="labor-market-maps..html"><i class="fa fa-check"></i><b>4.11</b> Labor market maps.</a>
+<ul>
+<li class="chapter" data-level="" data-path="labor-market-maps..html"><a href="labor-market-maps..html#occupancy-rate-1"><i class="fa fa-check"></i>Occupancy Rate</a></li>
+<li class="chapter" data-level="" data-path="labor-market-maps..html"><a href="labor-market-maps..html#unemployment-rate-1"><i class="fa fa-check"></i>Unemployment Rate</a></li>
+<li class="chapter" data-level="" data-path="labor-market-maps..html"><a href="labor-market-maps..html#inactivo"><i class="fa fa-check"></i>Inactivo</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a Area models for estimating poverty and labor market indicators </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="metodología-de-benchmarking" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Metodología de Benchmarking<a href="metodología-de-benchmarking.html#metodología-de-benchmarking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>People counts aggregated by dam2, people over 15 years of age.</li>
+</ol>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="metodología-de-benchmarking.html#cb85-1" tabindex="-1"></a>conteo_pp_dam <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;Recursos/05_Empleo/12_censo_mrp.rds&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-2"><a href="metodología-de-benchmarking.html#cb85-2" tabindex="-1"></a>   <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">1</span>)  <span class="sc">%&gt;%</span> </span>
+<span id="cb85-3"><a href="metodología-de-benchmarking.html#cb85-3" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">dam =</span> <span class="fu">str_sub</span>(dam2,<span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-4"><a href="metodología-de-benchmarking.html#cb85-4" tabindex="-1"></a>  <span class="fu">group_by</span>(dam, dam2) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-5"><a href="metodología-de-benchmarking.html#cb85-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pp_dam2 =</span> <span class="fu">sum</span>(n),<span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-6"><a href="metodología-de-benchmarking.html#cb85-6" tabindex="-1"></a>  <span class="fu">group_by</span>(dam) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-7"><a href="metodología-de-benchmarking.html#cb85-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pp_dam =</span> <span class="fu">sum</span>(pp_dam2))</span>
+<span id="cb85-8"><a href="metodología-de-benchmarking.html#cb85-8" tabindex="-1"></a><span class="fu">head</span>(conteo_pp_dam) <span class="sc">%&gt;%</span> <span class="fu">tba</span>()</span></code></pre></div>
+<table class="table table-striped lightable-classic" style="width: auto !important; margin-left: auto; margin-right: auto; font-family: Arial Narrow; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+dam
+</th>
+<th style="text-align:left;">
+dam2
+</th>
+<th style="text-align:right;">
+pp_dam2
+</th>
+<th style="text-align:right;">
+pp_dam
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+0101
+</td>
+<td style="text-align:right;">
+26282
+</td>
+<td style="text-align:right;">
+64195
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+0102
+</td>
+<td style="text-align:right;">
+19385
+</td>
+<td style="text-align:right;">
+64195
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+0103
+</td>
+<td style="text-align:right;">
+18272
+</td>
+<td style="text-align:right;">
+64195
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+0198
+</td>
+<td style="text-align:right;">
+256
+</td>
+<td style="text-align:right;">
+64195
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+0201
+</td>
+<td style="text-align:right;">
+44833
+</td>
+<td style="text-align:right;">
+443954
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+0202
+</td>
+<td style="text-align:right;">
+35177
+</td>
+<td style="text-align:right;">
+443954
+</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li>Estimation of the <code>theta</code> parameter at the level that the survey is representative.</li>
+</ol>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="metodología-de-benchmarking.html#cb86-1" tabindex="-1"></a>indicador_agregado <span class="ot">&lt;-</span></span>
+<span id="cb86-2"><a href="metodología-de-benchmarking.html#cb86-2" tabindex="-1"></a>  diseno <span class="sc">%&gt;%</span> </span>
+<span id="cb86-3"><a href="metodología-de-benchmarking.html#cb86-3" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">dam =</span> <span class="fu">str_sub</span>(dam2,<span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb86-4"><a href="metodología-de-benchmarking.html#cb86-4" tabindex="-1"></a>  <span class="fu">group_by</span>(dam) <span class="sc">%&gt;%</span> </span>
+<span id="cb86-5"><a href="metodología-de-benchmarking.html#cb86-5" tabindex="-1"></a>  <span class="fu">filter</span>(empleo <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb86-6"><a href="metodología-de-benchmarking.html#cb86-6" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb86-7"><a href="metodología-de-benchmarking.html#cb86-7" tabindex="-1"></a>    <span class="at">TO =</span> <span class="fu">survey_mean</span>(empleo <span class="sc">==</span> <span class="dv">3</span>,</span>
+<span id="cb86-8"><a href="metodología-de-benchmarking.html#cb86-8" tabindex="-1"></a>                     <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">&quot;se&quot;</span>, <span class="st">&quot;cv&quot;</span>)),</span>
+<span id="cb86-9"><a href="metodología-de-benchmarking.html#cb86-9" tabindex="-1"></a>    <span class="at">TD =</span> <span class="fu">survey_ratio</span>(empleo <span class="sc">==</span> <span class="dv">4</span>,</span>
+<span id="cb86-10"><a href="metodología-de-benchmarking.html#cb86-10" tabindex="-1"></a>                      empleo <span class="sc">!=</span> <span class="dv">5</span>,</span>
+<span id="cb86-11"><a href="metodología-de-benchmarking.html#cb86-11" tabindex="-1"></a>                      <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">&quot;se&quot;</span>,  <span class="st">&quot;cv&quot;</span>)),</span>
+<span id="cb86-12"><a href="metodología-de-benchmarking.html#cb86-12" tabindex="-1"></a>    <span class="at">TP =</span> <span class="fu">survey_mean</span>(empleo <span class="sc">!=</span> <span class="dv">5</span>,</span>
+<span id="cb86-13"><a href="metodología-de-benchmarking.html#cb86-13" tabindex="-1"></a>                     <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">&quot;se&quot;</span>,  <span class="st">&quot;cv&quot;</span>))</span>
+<span id="cb86-14"><a href="metodología-de-benchmarking.html#cb86-14" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">select</span>(dam,TO,TD, TP)</span>
+<span id="cb86-15"><a href="metodología-de-benchmarking.html#cb86-15" tabindex="-1"></a></span>
+<span id="cb86-16"><a href="metodología-de-benchmarking.html#cb86-16" tabindex="-1"></a></span>
+<span id="cb86-17"><a href="metodología-de-benchmarking.html#cb86-17" tabindex="-1"></a><span class="fu">tba</span>(indicador_agregado)</span></code></pre></div>
+<table class="table table-striped lightable-classic" style="width: auto !important; margin-left: auto; margin-right: auto; font-family: Arial Narrow; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+dam
+</th>
+<th style="text-align:right;">
+TO
+</th>
+<th style="text-align:right;">
+TD
+</th>
+<th style="text-align:right;">
+TP
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:right;">
+0.5990
+</td>
+<td style="text-align:right;">
+0.0609
+</td>
+<td style="text-align:right;">
+0.6378
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:right;">
+0.6065
+</td>
+<td style="text-align:right;">
+0.0462
+</td>
+<td style="text-align:right;">
+0.6359
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+03
+</td>
+<td style="text-align:right;">
+0.5722
+</td>
+<td style="text-align:right;">
+0.1573
+</td>
+<td style="text-align:right;">
+0.6790
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+04
+</td>
+<td style="text-align:right;">
+0.5459
+</td>
+<td style="text-align:right;">
+0.1137
+</td>
+<td style="text-align:right;">
+0.6160
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+05
+</td>
+<td style="text-align:right;">
+0.5132
+</td>
+<td style="text-align:right;">
+0.1029
+</td>
+<td style="text-align:right;">
+0.5720
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+06
+</td>
+<td style="text-align:right;">
+0.5328
+</td>
+<td style="text-align:right;">
+0.1499
+</td>
+<td style="text-align:right;">
+0.6267
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+07
+</td>
+<td style="text-align:right;">
+0.5003
+</td>
+<td style="text-align:right;">
+0.0683
+</td>
+<td style="text-align:right;">
+0.5369
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+08
+</td>
+<td style="text-align:right;">
+0.5741
+</td>
+<td style="text-align:right;">
+0.1177
+</td>
+<td style="text-align:right;">
+0.6506
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+09
+</td>
+<td style="text-align:right;">
+0.5506
+</td>
+<td style="text-align:right;">
+0.0726
+</td>
+<td style="text-align:right;">
+0.5938
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+0.5815
+</td>
+<td style="text-align:right;">
+0.0666
+</td>
+<td style="text-align:right;">
+0.6230
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:right;">
+0.6059
+</td>
+<td style="text-align:right;">
+0.0400
+</td>
+<td style="text-align:right;">
+0.6311
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:right;">
+0.5746
+</td>
+<td style="text-align:right;">
+0.0909
+</td>
+<td style="text-align:right;">
+0.6320
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:right;">
+0.5753
+</td>
+<td style="text-align:right;">
+0.0951
+</td>
+<td style="text-align:right;">
+0.6358
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:right;">
+0.5946
+</td>
+<td style="text-align:right;">
+0.0852
+</td>
+<td style="text-align:right;">
+0.6500
+</td>
+</tr>
+</tbody>
+</table>
+<p>Organizing the output as a vector.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="metodología-de-benchmarking.html#cb87-1" tabindex="-1"></a>temp <span class="ot">&lt;-</span></span>
+<span id="cb87-2"><a href="metodología-de-benchmarking.html#cb87-2" tabindex="-1"></a>  <span class="fu">gather</span>(indicador_agregado, <span class="at">key =</span> <span class="st">&quot;agregado&quot;</span>,</span>
+<span id="cb87-3"><a href="metodología-de-benchmarking.html#cb87-3" tabindex="-1"></a>         <span class="at">value =</span> <span class="st">&quot;estimacion&quot;</span>, <span class="sc">-</span>dam) <span class="sc">%&gt;%</span></span>
+<span id="cb87-4"><a href="metodología-de-benchmarking.html#cb87-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nombre =</span> <span class="fu">paste0</span>(<span class="st">&quot;dam_&quot;</span>, dam,<span class="st">&quot;_&quot;</span>, agregado))</span>
+<span id="cb87-5"><a href="metodología-de-benchmarking.html#cb87-5" tabindex="-1"></a></span>
+<span id="cb87-6"><a href="metodología-de-benchmarking.html#cb87-6" tabindex="-1"></a>Razon_empleo <span class="ot">&lt;-</span> <span class="fu">setNames</span>(temp<span class="sc">$</span>estimacion, temp<span class="sc">$</span>nombre)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Define the weights by domains.</li>
+</ol>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="metodología-de-benchmarking.html#cb88-1" tabindex="-1"></a>names_cov <span class="ot">&lt;-</span>  <span class="st">&quot;dam&quot;</span></span>
+<span id="cb88-2"><a href="metodología-de-benchmarking.html#cb88-2" tabindex="-1"></a>estimaciones_mod <span class="ot">&lt;-</span> estimaciones <span class="sc">%&gt;%</span> </span>
+<span id="cb88-3"><a href="metodología-de-benchmarking.html#cb88-3" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb88-4"><a href="metodología-de-benchmarking.html#cb88-4" tabindex="-1"></a>    <span class="at">dam =</span> <span class="fu">str_sub</span>(dam2,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb88-5"><a href="metodología-de-benchmarking.html#cb88-5" tabindex="-1"></a>    dam2,</span>
+<span id="cb88-6"><a href="metodología-de-benchmarking.html#cb88-6" tabindex="-1"></a>    TO_mod,TD_mod,TP_mod) <span class="sc">%&gt;%</span> </span>
+<span id="cb88-7"><a href="metodología-de-benchmarking.html#cb88-7" tabindex="-1"></a>  <span class="fu">inner_join</span>(conteo_pp_dam ) <span class="sc">%&gt;%</span> </span>
+<span id="cb88-8"><a href="metodología-de-benchmarking.html#cb88-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wi =</span> pp_dam2<span class="sc">/</span>pp_dam)</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Create dummy variables</li>
+</ol>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="metodología-de-benchmarking.html#cb89-1" tabindex="-1"></a>estimaciones_mod <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb89-2"><a href="metodología-de-benchmarking.html#cb89-2" tabindex="-1"></a>  fastDummies<span class="sc">::</span><span class="fu">dummy_cols</span>(<span class="at">select_columns =</span> names_cov,</span>
+<span id="cb89-3"><a href="metodología-de-benchmarking.html#cb89-3" tabindex="-1"></a>                          <span class="at">remove_selected_columns =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb89-4"><a href="metodología-de-benchmarking.html#cb89-4" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="metodología-de-benchmarking.html#cb89-5" tabindex="-1"></a>Xdummy <span class="ot">&lt;-</span> estimaciones_mod <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">matches</span>(<span class="st">&quot;dam_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-6"><a href="metodología-de-benchmarking.html#cb89-6" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">matches</span>(<span class="st">&quot;_</span><span class="sc">\\</span><span class="st">d&quot;</span>)) ,</span>
+<span id="cb89-7"><a href="metodología-de-benchmarking.html#cb89-7" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">TO =</span> <span class="cf">function</span>(x) x<span class="sc">*</span>estimaciones_mod<span class="sc">$</span>TO_mod,</span>
+<span id="cb89-8"><a href="metodología-de-benchmarking.html#cb89-8" tabindex="-1"></a>                 <span class="at">TD =</span> <span class="cf">function</span>(x) x<span class="sc">*</span>estimaciones_mod<span class="sc">$</span>TD_mod,</span>
+<span id="cb89-9"><a href="metodología-de-benchmarking.html#cb89-9" tabindex="-1"></a>                 <span class="at">TP =</span> <span class="cf">function</span>(x) x<span class="sc">*</span>estimaciones_mod<span class="sc">$</span>TP_mod)) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-10"><a href="metodología-de-benchmarking.html#cb89-10" tabindex="-1"></a>  <span class="fu">select</span>((<span class="fu">matches</span>(<span class="st">&quot;TO|TD|TP&quot;</span>))) </span>
+<span id="cb89-11"><a href="metodología-de-benchmarking.html#cb89-11" tabindex="-1"></a></span>
+<span id="cb89-12"><a href="metodología-de-benchmarking.html#cb89-12" tabindex="-1"></a><span class="co"># head(Xdummy) %&gt;% tba()</span></span></code></pre></div>
+<p>Some validations carried out</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="metodología-de-benchmarking.html#cb90-1" tabindex="-1"></a><span class="fu">colnames</span>(Xdummy) <span class="sc">==</span> <span class="fu">names</span>(Razon_empleo)</span>
+<span id="cb90-2"><a href="metodología-de-benchmarking.html#cb90-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Modelo =</span> <span class="fu">colSums</span>(Xdummy<span class="sc">*</span>estimaciones_mod<span class="sc">$</span>wi),</span>
+<span id="cb90-3"><a href="metodología-de-benchmarking.html#cb90-3" tabindex="-1"></a><span class="at">Estimacion_encuesta =</span> Razon_empleo)</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>Calculate the weight for each level of the variable.</li>
+</ol>
+<div id="occupancy-rate" class="section level4 unnumbered hasAnchor">
+<h4>Occupancy Rate<a href="metodología-de-benchmarking.html#occupancy-rate" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="metodología-de-benchmarking.html#cb91-1" tabindex="-1"></a><span class="fu">library</span>(sampling)</span>
+<span id="cb91-2"><a href="metodología-de-benchmarking.html#cb91-2" tabindex="-1"></a>names_ocupado <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">&quot;TO&quot;</span>, <span class="at">x =</span> <span class="fu">colnames</span>(Xdummy),<span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb91-3"><a href="metodología-de-benchmarking.html#cb91-3" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="metodología-de-benchmarking.html#cb91-4" tabindex="-1"></a>gk_TO <span class="ot">&lt;-</span> <span class="fu">calib</span>(<span class="at">Xs =</span> Xdummy[,names_ocupado], </span>
+<span id="cb91-5"><a href="metodología-de-benchmarking.html#cb91-5" tabindex="-1"></a>            <span class="at">d =</span>  estimaciones_mod<span class="sc">$</span>wi,</span>
+<span id="cb91-6"><a href="metodología-de-benchmarking.html#cb91-6" tabindex="-1"></a>            <span class="at">total =</span> Razon_empleo[names_ocupado],</span>
+<span id="cb91-7"><a href="metodología-de-benchmarking.html#cb91-7" tabindex="-1"></a>            <span class="at">method=</span><span class="st">&quot;logit&quot;</span>,<span class="at">max_iter =</span> <span class="dv">5000</span>,) </span>
+<span id="cb91-8"><a href="metodología-de-benchmarking.html#cb91-8" tabindex="-1"></a></span>
+<span id="cb91-9"><a href="metodología-de-benchmarking.html#cb91-9" tabindex="-1"></a><span class="fu">checkcalibration</span>(<span class="at">Xs =</span> Xdummy[,names_ocupado], </span>
+<span id="cb91-10"><a href="metodología-de-benchmarking.html#cb91-10" tabindex="-1"></a>                 <span class="at">d =</span>estimaciones_mod<span class="sc">$</span>wi,</span>
+<span id="cb91-11"><a href="metodología-de-benchmarking.html#cb91-11" tabindex="-1"></a>                 <span class="at">total =</span> Razon_empleo[names_ocupado],</span>
+<span id="cb91-12"><a href="metodología-de-benchmarking.html#cb91-12" tabindex="-1"></a>                 <span class="at">g =</span> gk_TO)</span></code></pre></div>
+</div>
+<div id="unemployment-rate" class="section level4 unnumbered hasAnchor">
+<h4>Unemployment Rate<a href="metodología-de-benchmarking.html#unemployment-rate" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="metodología-de-benchmarking.html#cb92-1" tabindex="-1"></a>names_descupados <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">&quot;TD&quot;</span>, <span class="at">x =</span> <span class="fu">colnames</span>(Xdummy),<span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb92-2"><a href="metodología-de-benchmarking.html#cb92-2" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="metodología-de-benchmarking.html#cb92-3" tabindex="-1"></a>gk_TD <span class="ot">&lt;-</span> <span class="fu">calib</span>(<span class="at">Xs =</span> Xdummy[,names_descupados], </span>
+<span id="cb92-4"><a href="metodología-de-benchmarking.html#cb92-4" tabindex="-1"></a>                    <span class="at">d =</span>  estimaciones_mod<span class="sc">$</span>wi,</span>
+<span id="cb92-5"><a href="metodología-de-benchmarking.html#cb92-5" tabindex="-1"></a>                    <span class="at">total =</span> Razon_empleo[names_descupados],</span>
+<span id="cb92-6"><a href="metodología-de-benchmarking.html#cb92-6" tabindex="-1"></a>                    <span class="at">method=</span><span class="st">&quot;logit&quot;</span>,<span class="at">max_iter =</span> <span class="dv">5000</span>,) </span>
+<span id="cb92-7"><a href="metodología-de-benchmarking.html#cb92-7" tabindex="-1"></a></span>
+<span id="cb92-8"><a href="metodología-de-benchmarking.html#cb92-8" tabindex="-1"></a><span class="fu">checkcalibration</span>(<span class="at">Xs =</span> Xdummy[,names_descupados], </span>
+<span id="cb92-9"><a href="metodología-de-benchmarking.html#cb92-9" tabindex="-1"></a>                 <span class="at">d =</span>estimaciones_mod<span class="sc">$</span>wi,</span>
+<span id="cb92-10"><a href="metodología-de-benchmarking.html#cb92-10" tabindex="-1"></a>                 <span class="at">total =</span> Razon_empleo[names_descupados],</span>
+<span id="cb92-11"><a href="metodología-de-benchmarking.html#cb92-11" tabindex="-1"></a>                 <span class="at">g =</span> gk_TD)</span></code></pre></div>
+</div>
+<div id="participation-rate" class="section level4 unnumbered hasAnchor">
+<h4>Participation Rate<a href="metodología-de-benchmarking.html#participation-rate" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="metodología-de-benchmarking.html#cb93-1" tabindex="-1"></a>names_inactivo <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">&quot;TP&quot;</span>, <span class="at">x =</span> <span class="fu">colnames</span>(Xdummy),<span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb93-2"><a href="metodología-de-benchmarking.html#cb93-2" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="metodología-de-benchmarking.html#cb93-3" tabindex="-1"></a>gk_TP <span class="ot">&lt;-</span> <span class="fu">calib</span>(<span class="at">Xs =</span> Xdummy[,names_inactivo], </span>
+<span id="cb93-4"><a href="metodología-de-benchmarking.html#cb93-4" tabindex="-1"></a>                    <span class="at">d =</span>  estimaciones_mod<span class="sc">$</span>wi,</span>
+<span id="cb93-5"><a href="metodología-de-benchmarking.html#cb93-5" tabindex="-1"></a>                    <span class="at">total =</span> Razon_empleo[names_inactivo],</span>
+<span id="cb93-6"><a href="metodología-de-benchmarking.html#cb93-6" tabindex="-1"></a>                    <span class="at">method=</span><span class="st">&quot;logit&quot;</span>,<span class="at">max_iter =</span> <span class="dv">5000</span>,) </span>
+<span id="cb93-7"><a href="metodología-de-benchmarking.html#cb93-7" tabindex="-1"></a></span>
+<span id="cb93-8"><a href="metodología-de-benchmarking.html#cb93-8" tabindex="-1"></a><span class="fu">checkcalibration</span>(<span class="at">Xs =</span> Xdummy[,names_inactivo], </span>
+<span id="cb93-9"><a href="metodología-de-benchmarking.html#cb93-9" tabindex="-1"></a>                 <span class="at">d =</span>estimaciones_mod<span class="sc">$</span>wi,</span>
+<span id="cb93-10"><a href="metodología-de-benchmarking.html#cb93-10" tabindex="-1"></a>                 <span class="at">total =</span> Razon_empleo[names_inactivo],</span>
+<span id="cb93-11"><a href="metodología-de-benchmarking.html#cb93-11" tabindex="-1"></a>                 <span class="at">g =</span> gk_TP)</span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>Validate the results obtained.</li>
+</ol>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="metodología-de-benchmarking.html#cb94-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb94-2"><a href="metodología-de-benchmarking.html#cb94-2" tabindex="-1"></a><span class="fu">hist</span>(gk_TO)</span>
+<span id="cb94-3"><a href="metodología-de-benchmarking.html#cb94-3" tabindex="-1"></a><span class="fu">hist</span>(gk_TD)</span>
+<span id="cb94-4"><a href="metodología-de-benchmarking.html#cb94-4" tabindex="-1"></a><span class="fu">hist</span>(gk_TP)</span></code></pre></div>
+<p><img src="Recursos/05_Empleo/13_plot_gks.png" /></p>
+<ol start="7" style="list-style-type: decimal">
+<li>Estimates adjusted by the weighter</li>
+</ol>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="metodología-de-benchmarking.html#cb95-1" tabindex="-1"></a>estimacionesBench <span class="ot">&lt;-</span> estimaciones_mod <span class="sc">%&gt;%</span></span>
+<span id="cb95-2"><a href="metodología-de-benchmarking.html#cb95-2" tabindex="-1"></a>  <span class="fu">mutate</span>(gk_TO, gk_TD, gk_TP) <span class="sc">%&gt;%</span></span>
+<span id="cb95-3"><a href="metodología-de-benchmarking.html#cb95-3" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb95-4"><a href="metodología-de-benchmarking.html#cb95-4" tabindex="-1"></a>    dam,dam2,</span>
+<span id="cb95-5"><a href="metodología-de-benchmarking.html#cb95-5" tabindex="-1"></a>    wi,gk_TO, gk_TD, gk_TP,</span>
+<span id="cb95-6"><a href="metodología-de-benchmarking.html#cb95-6" tabindex="-1"></a>    <span class="at">TO_Bench =</span> TO_mod<span class="sc">*</span>gk_TO,</span>
+<span id="cb95-7"><a href="metodología-de-benchmarking.html#cb95-7" tabindex="-1"></a>    <span class="at">TD_Bench =</span> TD_mod<span class="sc">*</span>gk_TD,</span>
+<span id="cb95-8"><a href="metodología-de-benchmarking.html#cb95-8" tabindex="-1"></a>    <span class="at">TP_Bench =</span> TP_mod<span class="sc">*</span>gk_TP</span>
+<span id="cb95-9"><a href="metodología-de-benchmarking.html#cb95-9" tabindex="-1"></a>  ) </span></code></pre></div>
+<ol start="8" style="list-style-type: decimal">
+<li>Validation of results.</li>
+</ol>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="metodología-de-benchmarking.html#cb96-1" tabindex="-1"></a>tabla_validar <span class="ot">&lt;-</span> estimacionesBench <span class="sc">%&gt;%</span></span>
+<span id="cb96-2"><a href="metodología-de-benchmarking.html#cb96-2" tabindex="-1"></a>  <span class="fu">group_by</span>(dam) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-3"><a href="metodología-de-benchmarking.html#cb96-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TO_Bench =</span> <span class="fu">sum</span>(wi<span class="sc">*</span>TO_Bench),</span>
+<span id="cb96-4"><a href="metodología-de-benchmarking.html#cb96-4" tabindex="-1"></a>            <span class="at">TD_Bench =</span> <span class="fu">sum</span>(wi<span class="sc">*</span>TD_Bench),</span>
+<span id="cb96-5"><a href="metodología-de-benchmarking.html#cb96-5" tabindex="-1"></a>            <span class="at">TP_Bench =</span> <span class="fu">sum</span>(wi<span class="sc">*</span>TP_Bench)) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-6"><a href="metodología-de-benchmarking.html#cb96-6" tabindex="-1"></a>  <span class="fu">inner_join</span>(indicador_agregado)</span>
+<span id="cb96-7"><a href="metodología-de-benchmarking.html#cb96-7" tabindex="-1"></a>tabla_validar <span class="sc">%&gt;%</span> <span class="fu">tba</span>()</span></code></pre></div>
+<table class="table table-striped lightable-classic" style="width: auto !important; margin-left: auto; margin-right: auto; font-family: Arial Narrow; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+dam
+</th>
+<th style="text-align:right;">
+TO_Bench
+</th>
+<th style="text-align:right;">
+TD_Bench
+</th>
+<th style="text-align:right;">
+TP_Bench
+</th>
+<th style="text-align:right;">
+TO
+</th>
+<th style="text-align:right;">
+TD
+</th>
+<th style="text-align:right;">
+TP
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:right;">
+0.5990
+</td>
+<td style="text-align:right;">
+0.0609
+</td>
+<td style="text-align:right;">
+0.6378
+</td>
+<td style="text-align:right;">
+0.5990
+</td>
+<td style="text-align:right;">
+0.0609
+</td>
+<td style="text-align:right;">
+0.6378
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:right;">
+0.6065
+</td>
+<td style="text-align:right;">
+0.0462
+</td>
+<td style="text-align:right;">
+0.6359
+</td>
+<td style="text-align:right;">
+0.6065
+</td>
+<td style="text-align:right;">
+0.0462
+</td>
+<td style="text-align:right;">
+0.6359
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+03
+</td>
+<td style="text-align:right;">
+0.5722
+</td>
+<td style="text-align:right;">
+0.1573
+</td>
+<td style="text-align:right;">
+0.6790
+</td>
+<td style="text-align:right;">
+0.5722
+</td>
+<td style="text-align:right;">
+0.1573
+</td>
+<td style="text-align:right;">
+0.6790
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+04
+</td>
+<td style="text-align:right;">
+0.5459
+</td>
+<td style="text-align:right;">
+0.1137
+</td>
+<td style="text-align:right;">
+0.6160
+</td>
+<td style="text-align:right;">
+0.5459
+</td>
+<td style="text-align:right;">
+0.1137
+</td>
+<td style="text-align:right;">
+0.6160
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+05
+</td>
+<td style="text-align:right;">
+0.5132
+</td>
+<td style="text-align:right;">
+0.1029
+</td>
+<td style="text-align:right;">
+0.5720
+</td>
+<td style="text-align:right;">
+0.5132
+</td>
+<td style="text-align:right;">
+0.1029
+</td>
+<td style="text-align:right;">
+0.5720
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+06
+</td>
+<td style="text-align:right;">
+0.5328
+</td>
+<td style="text-align:right;">
+0.1499
+</td>
+<td style="text-align:right;">
+0.6267
+</td>
+<td style="text-align:right;">
+0.5328
+</td>
+<td style="text-align:right;">
+0.1499
+</td>
+<td style="text-align:right;">
+0.6267
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+07
+</td>
+<td style="text-align:right;">
+0.5003
+</td>
+<td style="text-align:right;">
+0.0683
+</td>
+<td style="text-align:right;">
+0.5369
+</td>
+<td style="text-align:right;">
+0.5003
+</td>
+<td style="text-align:right;">
+0.0683
+</td>
+<td style="text-align:right;">
+0.5369
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+08
+</td>
+<td style="text-align:right;">
+0.5741
+</td>
+<td style="text-align:right;">
+0.1177
+</td>
+<td style="text-align:right;">
+0.6506
+</td>
+<td style="text-align:right;">
+0.5741
+</td>
+<td style="text-align:right;">
+0.1177
+</td>
+<td style="text-align:right;">
+0.6506
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+09
+</td>
+<td style="text-align:right;">
+0.5506
+</td>
+<td style="text-align:right;">
+0.0726
+</td>
+<td style="text-align:right;">
+0.5938
+</td>
+<td style="text-align:right;">
+0.5506
+</td>
+<td style="text-align:right;">
+0.0726
+</td>
+<td style="text-align:right;">
+0.5938
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+0.5815
+</td>
+<td style="text-align:right;">
+0.0666
+</td>
+<td style="text-align:right;">
+0.6230
+</td>
+<td style="text-align:right;">
+0.5815
+</td>
+<td style="text-align:right;">
+0.0666
+</td>
+<td style="text-align:right;">
+0.6230
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:right;">
+0.6059
+</td>
+<td style="text-align:right;">
+0.0400
+</td>
+<td style="text-align:right;">
+0.6311
+</td>
+<td style="text-align:right;">
+0.6059
+</td>
+<td style="text-align:right;">
+0.0400
+</td>
+<td style="text-align:right;">
+0.6311
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:right;">
+0.5746
+</td>
+<td style="text-align:right;">
+0.0909
+</td>
+<td style="text-align:right;">
+0.6320
+</td>
+<td style="text-align:right;">
+0.5746
+</td>
+<td style="text-align:right;">
+0.0909
+</td>
+<td style="text-align:right;">
+0.6320
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:right;">
+0.5753
+</td>
+<td style="text-align:right;">
+0.0951
+</td>
+<td style="text-align:right;">
+0.6358
+</td>
+<td style="text-align:right;">
+0.5753
+</td>
+<td style="text-align:right;">
+0.0951
+</td>
+<td style="text-align:right;">
+0.6358
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:right;">
+0.5946
+</td>
+<td style="text-align:right;">
+0.0852
+</td>
+<td style="text-align:right;">
+0.6500
+</td>
+<td style="text-align:right;">
+0.5946
+</td>
+<td style="text-align:right;">
+0.0852
+</td>
+<td style="text-align:right;">
+0.6500
+</td>
+</tr>
+</tbody>
+</table>
+<ol start="9" style="list-style-type: decimal">
+<li>Save results</li>
+</ol>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="metodología-de-benchmarking.html#cb97-1" tabindex="-1"></a>estimaciones <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(estimaciones,estimacionesBench)</span>
+<span id="cb97-2"><a href="metodología-de-benchmarking.html#cb97-2" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="at">object =</span> estimaciones, <span class="at">file =</span> <span class="st">&quot;Recursos/05_Empleo/15_estimaciones_Bench.rds&quot;</span>)</span></code></pre></div>
+</div>
+<div id="grafico-de-validación-del-benchmarking" class="section level3 hasAnchor" number="4.10.1">
+<h3><span class="header-section-number">4.10.1</span> Grafico de validación del Benchmarking<a href="metodología-de-benchmarking.html#grafico-de-validación-del-benchmarking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Perform model estimates before and after Benchmarking</li>
+</ol>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="metodología-de-benchmarking.html#cb98-1" tabindex="-1"></a>estimaciones_agregada <span class="ot">&lt;-</span> estimaciones <span class="sc">%&gt;%</span></span>
+<span id="cb98-2"><a href="metodología-de-benchmarking.html#cb98-2" tabindex="-1"></a>  <span class="fu">group_by</span>(dam) <span class="sc">%&gt;%</span> </span>
+<span id="cb98-3"><a href="metodología-de-benchmarking.html#cb98-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb98-4"><a href="metodología-de-benchmarking.html#cb98-4" tabindex="-1"></a>    <span class="at">TO_mod =</span> <span class="fu">sum</span>(wi <span class="sc">*</span> TO_mod),</span>
+<span id="cb98-5"><a href="metodología-de-benchmarking.html#cb98-5" tabindex="-1"></a>    <span class="at">TD_mod =</span> <span class="fu">sum</span>(wi <span class="sc">*</span> TD_mod),</span>
+<span id="cb98-6"><a href="metodología-de-benchmarking.html#cb98-6" tabindex="-1"></a>    <span class="at">TP_mod =</span> <span class="fu">sum</span>(wi <span class="sc">*</span> TP_mod),</span>
+<span id="cb98-7"><a href="metodología-de-benchmarking.html#cb98-7" tabindex="-1"></a>    <span class="at">TO_bench =</span> <span class="fu">sum</span>(wi <span class="sc">*</span> TO_Bench),</span>
+<span id="cb98-8"><a href="metodología-de-benchmarking.html#cb98-8" tabindex="-1"></a>    <span class="at">TD_bench =</span> <span class="fu">sum</span>(wi <span class="sc">*</span> TD_Bench),</span>
+<span id="cb98-9"><a href="metodología-de-benchmarking.html#cb98-9" tabindex="-1"></a>    <span class="at">TP_bench =</span> <span class="fu">sum</span>(wi <span class="sc">*</span> TP_Bench))</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Obtain the confidence intervals for the direct estimates</li>
+</ol>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="metodología-de-benchmarking.html#cb99-1" tabindex="-1"></a>indicador_agregado <span class="ot">&lt;-</span></span>
+<span id="cb99-2"><a href="metodología-de-benchmarking.html#cb99-2" tabindex="-1"></a>  diseno <span class="sc">%&gt;%</span> </span>
+<span id="cb99-3"><a href="metodología-de-benchmarking.html#cb99-3" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">dam =</span> <span class="fu">str_sub</span>(dam2,<span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-4"><a href="metodología-de-benchmarking.html#cb99-4" tabindex="-1"></a>  <span class="fu">group_by</span>(dam) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-5"><a href="metodología-de-benchmarking.html#cb99-5" tabindex="-1"></a>  <span class="fu">filter</span>(empleo <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb99-6"><a href="metodología-de-benchmarking.html#cb99-6" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb99-7"><a href="metodología-de-benchmarking.html#cb99-7" tabindex="-1"></a>     <span class="at">nd =</span> <span class="fu">unweighted</span>(<span class="fu">n</span>()),</span>
+<span id="cb99-8"><a href="metodología-de-benchmarking.html#cb99-8" tabindex="-1"></a>    <span class="at">TO =</span> <span class="fu">survey_mean</span>(empleo <span class="sc">==</span> <span class="dv">3</span>,</span>
+<span id="cb99-9"><a href="metodología-de-benchmarking.html#cb99-9" tabindex="-1"></a>                     <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">&quot;ci&quot;</span>)),</span>
+<span id="cb99-10"><a href="metodología-de-benchmarking.html#cb99-10" tabindex="-1"></a>    <span class="at">TD =</span> <span class="fu">survey_ratio</span>(empleo <span class="sc">==</span> <span class="dv">4</span>,</span>
+<span id="cb99-11"><a href="metodología-de-benchmarking.html#cb99-11" tabindex="-1"></a>                      empleo <span class="sc">!=</span> <span class="dv">5</span>,</span>
+<span id="cb99-12"><a href="metodología-de-benchmarking.html#cb99-12" tabindex="-1"></a>                      <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">&quot;ci&quot;</span>)),</span>
+<span id="cb99-13"><a href="metodología-de-benchmarking.html#cb99-13" tabindex="-1"></a>    <span class="at">TP =</span> <span class="fu">survey_mean</span>(empleo <span class="sc">!=</span> <span class="dv">5</span>,</span>
+<span id="cb99-14"><a href="metodología-de-benchmarking.html#cb99-14" tabindex="-1"></a>                     <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">&quot;ci&quot;</span>))</span>
+<span id="cb99-15"><a href="metodología-de-benchmarking.html#cb99-15" tabindex="-1"></a>  ) </span>
+<span id="cb99-16"><a href="metodología-de-benchmarking.html#cb99-16" tabindex="-1"></a></span>
+<span id="cb99-17"><a href="metodología-de-benchmarking.html#cb99-17" tabindex="-1"></a>data_plot <span class="ot">&lt;-</span> <span class="fu">left_join</span>(estimaciones_agregada, indicador_agregado)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Select the results for an indicator (Occupancy rate)</li>
+</ol>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="metodología-de-benchmarking.html#cb100-1" tabindex="-1"></a>temp_TO <span class="ot">&lt;-</span> data_plot <span class="sc">%&gt;%</span> <span class="fu">select</span>(dam,nd, <span class="fu">starts_with</span>(<span class="st">&quot;TO&quot;</span>))</span>
+<span id="cb100-2"><a href="metodología-de-benchmarking.html#cb100-2" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="metodología-de-benchmarking.html#cb100-3" tabindex="-1"></a></span>
+<span id="cb100-4"><a href="metodología-de-benchmarking.html#cb100-4" tabindex="-1"></a>temp_TO_1 <span class="ot">&lt;-</span> temp_TO <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>TO_low, <span class="sc">-</span>TO_upp) <span class="sc">%&gt;%</span></span>
+<span id="cb100-5"><a href="metodología-de-benchmarking.html#cb100-5" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">&quot;Estimacion&quot;</span>,<span class="at">value =</span> <span class="st">&quot;value&quot;</span>, <span class="sc">-</span>nd,<span class="sc">-</span>dam) <span class="sc">%&gt;%</span> </span>
+<span id="cb100-6"><a href="metodología-de-benchmarking.html#cb100-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Estimacion =</span> <span class="fu">case_when</span>(Estimacion <span class="sc">==</span> <span class="st">&quot;TO_mod&quot;</span> <span class="sc">~</span> <span class="st">&quot;Area model&quot;</span>,</span>
+<span id="cb100-7"><a href="metodología-de-benchmarking.html#cb100-7" tabindex="-1"></a>                                Estimacion <span class="sc">==</span> <span class="st">&quot;TO_bench&quot;</span> <span class="sc">~</span> <span class="st">&quot;Area model (bench)&quot;</span>,</span>
+<span id="cb100-8"><a href="metodología-de-benchmarking.html#cb100-8" tabindex="-1"></a>                                Estimacion <span class="sc">==</span> <span class="st">&quot;TO&quot;</span><span class="sc">~</span> <span class="st">&quot;Direct estimator&quot;</span>))</span>
+<span id="cb100-9"><a href="metodología-de-benchmarking.html#cb100-9" tabindex="-1"></a></span>
+<span id="cb100-10"><a href="metodología-de-benchmarking.html#cb100-10" tabindex="-1"></a>lims_IC_ocupado <span class="ot">&lt;-</span>  temp_TO <span class="sc">%&gt;%</span></span>
+<span id="cb100-11"><a href="metodología-de-benchmarking.html#cb100-11" tabindex="-1"></a>  <span class="fu">select</span>(dam,nd,<span class="at">value =</span> TO,TO_low, TO_upp) <span class="sc">%&gt;%</span> </span>
+<span id="cb100-12"><a href="metodología-de-benchmarking.html#cb100-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Estimacion =</span> <span class="st">&quot;Direct estimator&quot;</span>)</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Make the graph</li>
+</ol>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="metodología-de-benchmarking.html#cb101-1" tabindex="-1"></a>p_TO <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(temp_TO_1,</span>
+<span id="cb101-2"><a href="metodología-de-benchmarking.html#cb101-2" tabindex="-1"></a>                    <span class="fu">aes</span>(</span>
+<span id="cb101-3"><a href="metodología-de-benchmarking.html#cb101-3" tabindex="-1"></a>                      <span class="at">x =</span> <span class="fu">fct_reorder2</span>(dam, dam, nd),</span>
+<span id="cb101-4"><a href="metodología-de-benchmarking.html#cb101-4" tabindex="-1"></a>                      <span class="at">y =</span> value,</span>
+<span id="cb101-5"><a href="metodología-de-benchmarking.html#cb101-5" tabindex="-1"></a>                      <span class="at">shape =</span> Estimacion,</span>
+<span id="cb101-6"><a href="metodología-de-benchmarking.html#cb101-6" tabindex="-1"></a>                      <span class="at">color =</span> Estimacion</span>
+<span id="cb101-7"><a href="metodología-de-benchmarking.html#cb101-7" tabindex="-1"></a>                    )) <span class="sc">+</span></span>
+<span id="cb101-8"><a href="metodología-de-benchmarking.html#cb101-8" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb101-9"><a href="metodología-de-benchmarking.html#cb101-9" tabindex="-1"></a>    <span class="at">data =</span> lims_IC_ocupado,</span>
+<span id="cb101-10"><a href="metodología-de-benchmarking.html#cb101-10" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> TO_low ,</span>
+<span id="cb101-11"><a href="metodología-de-benchmarking.html#cb101-11" tabindex="-1"></a>        <span class="at">ymax =</span> TO_upp, <span class="at">x =</span> dam),</span>
+<span id="cb101-12"><a href="metodología-de-benchmarking.html#cb101-12" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.2</span>,</span>
+<span id="cb101-13"><a href="metodología-de-benchmarking.html#cb101-13" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb101-14"><a href="metodología-de-benchmarking.html#cb101-14" tabindex="-1"></a>  )  <span class="sc">+</span></span>
+<span id="cb101-15"><a href="metodología-de-benchmarking.html#cb101-15" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb101-16"><a href="metodología-de-benchmarking.html#cb101-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Dam&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Occupancy Rate&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, </span>
+<span id="cb101-17"><a href="metodología-de-benchmarking.html#cb101-17" tabindex="-1"></a>       <span class="at">color=</span> <span class="st">&quot;Estimation&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;Estimation&quot;</span>)</span></code></pre></div>
+<p><img src="Recursos/05_Empleo/16_plot_uni_TO.png" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Repeat the process with the other indicators.</li>
+</ol>
+<p><img src="Recursos/05_Empleo/16_plot_uni_TD.png" />
+<img src="Recursos/05_Empleo/16_plot_uni_TP.png" /></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estimation-of-standard-deviation-and-coefficient-of-variation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="labor-market-maps..html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/psirusteam/2021ASDA/05_S2_Work_Market.qmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Area models for estimating poverty and labor market indicators.pdf", "Area models for estimating poverty and labor market indicators.epub", "Area models for estimating poverty and labor market indicators.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"tconfig": null
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 tab:unnamed-chunk-7
 tab:unnamed-chunk-8
-sesión-1--census-and-satellite-information
+session-1--census-and-satellite-information
 use-of-satellite-imagery-and-sae
 satellite-image-data-sources
 google-earth-engine
@@ -28,3 +28,17 @@ resultados-del-modelo-para-los-dominios-observados.
 benchmark-process
 results-validation
 poverty-map
+session-4---area-model-for-labor-market-statistics
+definition-of-the-multinomial-model
+loading-libraries
+reading-the-survey-and-direct-estimates
+domain-selection
+modeling-in-stan
+preparing-supplies-for-stan
+model-validation
+posterior-predictive-distribution
+parameter-estimation.
+estimation-of-standard-deviation-and-coefficient-of-variation
+metodología-de-benchmarking
+grafico-de-validación-del-benchmarking
+labor-market-maps.
