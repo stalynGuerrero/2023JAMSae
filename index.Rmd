@@ -1,6 +1,5 @@
 --- 
 Title: "Area models for estimating poverty and labor market indicators"
-
 Author: "Andrés Gutiérrez^[Experto Regional en Estadísticas Sociales - Comisión Económica para América Latina y el Caribe (CEPAL) - andres.gutierrez@cepal.org], Stalyn Guerrero^[Consultor - Comisión Económica para América Latina y el Caribe (CEPAL) - guerrerostalyn@gmail.com], Gabriel  Nieto^[Consultor - Comisión Económica para América Latina y el Caribe (CEPAL) - gabrieljose.nieto@gmail.com]"
 date: "`r Sys.Date()`"
 documentclass: book
@@ -58,6 +57,8 @@ thematic_on(
 ```
 
 # Workshop material {-}
+
+## Workshop material {-}
 
 In the following link you will find the R routines developed for the workshop.
 [Descargar](https://github.com/stalynGuerrero/2023JAMSae/)

@@ -1,4 +1,4 @@
-# Sesión 1- Census and satellite information
+# Session 1- Census and satellite information
 
 ```{r setup, include=FALSE, message=FALSE, error=FALSE, warning=FALSE}
 knitr::opts_chunk$set(

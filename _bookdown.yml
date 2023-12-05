@@ -5,7 +5,11 @@ new_session: yes
 
 rmd_files: [
   "index.Rmd",
-  "01_S2_Satellite_Images.qmd"
+  "01_S00_Satellite_Images.qmd",
+  "02_S1_FGV.qmd",
+  "03_S1_Fay_Herriot_normal.qmd",
+  "04_S1_Fay_Herriot_arcosin.qmd",
+  "05_S2_Work_Market.qmd"
 ]
 
 language:
