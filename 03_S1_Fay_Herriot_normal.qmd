@@ -27,7 +27,7 @@ Now, the Fay Herriot model relates area indicators $\theta_d$, where $d$ ranges 
 
 However, the true values of the indicators $\theta_d$ are not observable. Hence, the direct estimator $\hat{\theta}^{DIR}_d$ is used to estimate them, leading to sampling error. This estimator is still considered unbiased under the sample design, i.e., 
 $$
-\hat{\theta}_d^{DIR} = \theta + e_d  
+\hat{\theta}_d^{DIR} = \theta_d + e_d  
 $$
 
 The model is then fitted using the sampling error term $e_d$, where $e_{d} \stackrel{ind}{\sim} \left(0,\sigma^2_{e_d}\right)$, and the variances $\sigma^2_{e_d}$ are estimated using survey microdata. The FH model is rewritten as

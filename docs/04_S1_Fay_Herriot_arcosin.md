@@ -75,7 +75,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <th style="text-align:right;"> varhat </th>
    <th style="text-align:right;"> area1 </th>
    <th style="text-align:right;"> sex2 </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:right;"> age2 </th>
   </tr>
  </thead>
 <tbody>
@@ -87,7 +87,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5087 </td>
-   <td style="text-align:right;"> 2.5043 </td>
+   <td style="text-align:right;"> 0.2694 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0102 </td>
@@ -97,7 +97,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> 2.000000e-04 </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.4754 </td>
-   <td style="text-align:right;"> 2.4689 </td>
+   <td style="text-align:right;"> 0.2857 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0103 </td>
@@ -107,7 +107,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> 2.226882e+57 </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5037 </td>
-   <td style="text-align:right;"> 2.2858 </td>
+   <td style="text-align:right;"> 0.3095 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0201 </td>
@@ -117,7 +117,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 0.5147 </td>
    <td style="text-align:right;"> 0.5060 </td>
-   <td style="text-align:right;"> 2.5517 </td>
+   <td style="text-align:right;"> 0.2962 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0202 </td>
@@ -127,7 +127,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> 0.000000e+00 </td>
    <td style="text-align:right;"> 0.9986 </td>
    <td style="text-align:right;"> 0.5376 </td>
-   <td style="text-align:right;"> 2.7635 </td>
+   <td style="text-align:right;"> 0.2625 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0203 </td>
@@ -137,7 +137,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> 0.000000e+00 </td>
    <td style="text-align:right;"> 0.9754 </td>
    <td style="text-align:right;"> 0.5432 </td>
-   <td style="text-align:right;"> 2.8765 </td>
+   <td style="text-align:right;"> 0.2454 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0204 </td>
@@ -147,7 +147,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5300 </td>
-   <td style="text-align:right;"> 2.6401 </td>
+   <td style="text-align:right;"> 0.3151 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0205 </td>
@@ -157,7 +157,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> 0.000000e+00 </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5182 </td>
-   <td style="text-align:right;"> 2.6644 </td>
+   <td style="text-align:right;"> 0.3057 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0206 </td>
@@ -167,7 +167,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5157 </td>
-   <td style="text-align:right;"> 2.3750 </td>
+   <td style="text-align:right;"> 0.3192 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0207 </td>
@@ -177,7 +177,7 @@ tba(base_FH[, 1:8] %>% head(10))
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5097 </td>
-   <td style="text-align:right;"> 2.4257 </td>
+   <td style="text-align:right;"> 0.3099 </td>
   </tr>
 </tbody>
 </table>

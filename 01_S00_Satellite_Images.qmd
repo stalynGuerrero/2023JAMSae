@@ -257,7 +257,7 @@ tba(head(predictors_satelital,10))
 
 
 ```{r, echo=FALSE, out.width = "400%"}
-temp2 <- predictors_satelital %>% select(-dam2) %>% names()
+temp2 <- predictors_satelital %>% select(-dam2, -matches("age")) %>% names()
 temp2 <- paste0("Recursos/01_Session1/18_plot_Censo/", temp2, ".png")
 knitr::include_graphics(temp2)
 ```

@@ -9,7 +9,7 @@ Now, the Fay Herriot model relates area indicators $\theta_d$, where $d$ ranges 
 
 However, the true values of the indicators $\theta_d$ are not observable. Hence, the direct estimator $\hat{\theta}^{DIR}_d$ is used to estimate them, leading to sampling error. This estimator is still considered unbiased under the sample design, i.e., 
 $$
-\hat{\theta}_d^{DIR} = \theta + e_d  
+\hat{\theta}_d^{DIR} = \theta_d + e_d  
 $$
 
 The model is then fitted using the sampling error term $e_d$, where $e_{d} \stackrel{ind}{\sim} \left(0,\sigma^2_{e_d}\right)$, and the variances $\sigma^2_{e_d}$ are estimated using survey microdata. The FH model is rewritten as
@@ -145,9 +145,9 @@ tba(base_FH[1:10,1:8])
    <th style="text-align:right;"> hat_var </th>
    <th style="text-align:right;"> area1 </th>
    <th style="text-align:right;"> sex2 </th>
-   <th style="text-align:right;"> age </th>
-   <th style="text-align:right;"> tiene_sanitario </th>
-   <th style="text-align:right;"> tiene_electricidad </th>
+   <th style="text-align:right;"> age2 </th>
+   <th style="text-align:right;"> age3 </th>
+   <th style="text-align:right;"> age4 </th>
   </tr>
  </thead>
 <tbody>
@@ -157,9 +157,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5087 </td>
-   <td style="text-align:right;"> 2.5043 </td>
-   <td style="text-align:right;"> 0.0019 </td>
-   <td style="text-align:right;"> 0.7596 </td>
+   <td style="text-align:right;"> 0.2694 </td>
+   <td style="text-align:right;"> 0.2297 </td>
+   <td style="text-align:right;"> 0.1689 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0102 </td>
@@ -167,9 +167,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.4754 </td>
-   <td style="text-align:right;"> 2.4689 </td>
-   <td style="text-align:right;"> 0.0011 </td>
-   <td style="text-align:right;"> 0.9064 </td>
+   <td style="text-align:right;"> 0.2857 </td>
+   <td style="text-align:right;"> 0.2261 </td>
+   <td style="text-align:right;"> 0.1527 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0103 </td>
@@ -177,9 +177,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5037 </td>
-   <td style="text-align:right;"> 2.2858 </td>
-   <td style="text-align:right;"> 0.0152 </td>
-   <td style="text-align:right;"> 0.6930 </td>
+   <td style="text-align:right;"> 0.3095 </td>
+   <td style="text-align:right;"> 0.2015 </td>
+   <td style="text-align:right;"> 0.1312 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0201 </td>
@@ -187,9 +187,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 0.5147 </td>
    <td style="text-align:right;"> 0.5060 </td>
-   <td style="text-align:right;"> 2.5517 </td>
-   <td style="text-align:right;"> 0.0138 </td>
-   <td style="text-align:right;"> 0.2342 </td>
+   <td style="text-align:right;"> 0.2962 </td>
+   <td style="text-align:right;"> 0.2090 </td>
+   <td style="text-align:right;"> 0.1844 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0202 </td>
@@ -197,9 +197,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0.9986 </td>
    <td style="text-align:right;"> 0.5376 </td>
-   <td style="text-align:right;"> 2.7635 </td>
-   <td style="text-align:right;"> 0.0028 </td>
-   <td style="text-align:right;"> 0.3852 </td>
+   <td style="text-align:right;"> 0.2625 </td>
+   <td style="text-align:right;"> 0.2226 </td>
+   <td style="text-align:right;"> 0.2238 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0203 </td>
@@ -207,9 +207,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0.9754 </td>
    <td style="text-align:right;"> 0.5432 </td>
-   <td style="text-align:right;"> 2.8765 </td>
-   <td style="text-align:right;"> 0.0015 </td>
-   <td style="text-align:right;"> 0.3326 </td>
+   <td style="text-align:right;"> 0.2454 </td>
+   <td style="text-align:right;"> 0.2254 </td>
+   <td style="text-align:right;"> 0.2388 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0204 </td>
@@ -217,9 +217,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5300 </td>
-   <td style="text-align:right;"> 2.6401 </td>
-   <td style="text-align:right;"> 0.0042 </td>
-   <td style="text-align:right;"> 0.5720 </td>
+   <td style="text-align:right;"> 0.3151 </td>
+   <td style="text-align:right;"> 0.2022 </td>
+   <td style="text-align:right;"> 0.2034 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0205 </td>
@@ -227,9 +227,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5182 </td>
-   <td style="text-align:right;"> 2.6644 </td>
-   <td style="text-align:right;"> 0.0013 </td>
-   <td style="text-align:right;"> 0.8060 </td>
+   <td style="text-align:right;"> 0.3057 </td>
+   <td style="text-align:right;"> 0.2286 </td>
+   <td style="text-align:right;"> 0.1981 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0206 </td>
@@ -237,9 +237,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5157 </td>
-   <td style="text-align:right;"> 2.3750 </td>
-   <td style="text-align:right;"> 0.0290 </td>
-   <td style="text-align:right;"> 0.0285 </td>
+   <td style="text-align:right;"> 0.3192 </td>
+   <td style="text-align:right;"> 0.1959 </td>
+   <td style="text-align:right;"> 0.1552 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0207 </td>
@@ -247,9 +247,9 @@ tba(base_FH[1:10,1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5097 </td>
-   <td style="text-align:right;"> 2.4257 </td>
-   <td style="text-align:right;"> 0.0465 </td>
-   <td style="text-align:right;"> 0.1581 </td>
+   <td style="text-align:right;"> 0.3099 </td>
+   <td style="text-align:right;"> 0.1966 </td>
+   <td style="text-align:right;"> 0.1691 </td>
   </tr>
 </tbody>
 </table>
@@ -287,9 +287,9 @@ tba(data_syn[1:10, 1:8])
    <th style="text-align:right;"> hat_var </th>
    <th style="text-align:right;"> area1 </th>
    <th style="text-align:right;"> sex2 </th>
-   <th style="text-align:right;"> age </th>
-   <th style="text-align:right;"> tiene_sanitario </th>
-   <th style="text-align:right;"> tiene_electricidad </th>
+   <th style="text-align:right;"> age2 </th>
+   <th style="text-align:right;"> age3 </th>
+   <th style="text-align:right;"> age4 </th>
   </tr>
  </thead>
 <tbody>
@@ -299,9 +299,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5087 </td>
-   <td style="text-align:right;"> 2.5043 </td>
-   <td style="text-align:right;"> 0.0019 </td>
-   <td style="text-align:right;"> 0.7596 </td>
+   <td style="text-align:right;"> 0.2694 </td>
+   <td style="text-align:right;"> 0.2297 </td>
+   <td style="text-align:right;"> 0.1689 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0201 </td>
@@ -309,9 +309,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 0.5147 </td>
    <td style="text-align:right;"> 0.5060 </td>
-   <td style="text-align:right;"> 2.5517 </td>
-   <td style="text-align:right;"> 0.0138 </td>
-   <td style="text-align:right;"> 0.2342 </td>
+   <td style="text-align:right;"> 0.2962 </td>
+   <td style="text-align:right;"> 0.2090 </td>
+   <td style="text-align:right;"> 0.1844 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0204 </td>
@@ -319,9 +319,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5300 </td>
-   <td style="text-align:right;"> 2.6401 </td>
-   <td style="text-align:right;"> 0.0042 </td>
-   <td style="text-align:right;"> 0.5720 </td>
+   <td style="text-align:right;"> 0.3151 </td>
+   <td style="text-align:right;"> 0.2022 </td>
+   <td style="text-align:right;"> 0.2034 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0206 </td>
@@ -329,9 +329,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5157 </td>
-   <td style="text-align:right;"> 2.3750 </td>
-   <td style="text-align:right;"> 0.0290 </td>
-   <td style="text-align:right;"> 0.0285 </td>
+   <td style="text-align:right;"> 0.3192 </td>
+   <td style="text-align:right;"> 0.1959 </td>
+   <td style="text-align:right;"> 0.1552 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0207 </td>
@@ -339,9 +339,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5097 </td>
-   <td style="text-align:right;"> 2.4257 </td>
-   <td style="text-align:right;"> 0.0465 </td>
-   <td style="text-align:right;"> 0.1581 </td>
+   <td style="text-align:right;"> 0.3099 </td>
+   <td style="text-align:right;"> 0.1966 </td>
+   <td style="text-align:right;"> 0.1691 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0208 </td>
@@ -349,9 +349,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5256 </td>
-   <td style="text-align:right;"> 2.6193 </td>
-   <td style="text-align:right;"> 0.0018 </td>
-   <td style="text-align:right;"> 0.4508 </td>
+   <td style="text-align:right;"> 0.2880 </td>
+   <td style="text-align:right;"> 0.2218 </td>
+   <td style="text-align:right;"> 0.1974 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0209 </td>
@@ -359,9 +359,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5149 </td>
-   <td style="text-align:right;"> 2.4776 </td>
-   <td style="text-align:right;"> 0.0066 </td>
-   <td style="text-align:right;"> 0.3041 </td>
+   <td style="text-align:right;"> 0.3018 </td>
+   <td style="text-align:right;"> 0.2100 </td>
+   <td style="text-align:right;"> 0.1759 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0210 </td>
@@ -369,9 +369,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 0.9779 </td>
    <td style="text-align:right;"> 0.5194 </td>
-   <td style="text-align:right;"> 2.5153 </td>
-   <td style="text-align:right;"> 0.0144 </td>
-   <td style="text-align:right;"> 0.2003 </td>
+   <td style="text-align:right;"> 0.3000 </td>
+   <td style="text-align:right;"> 0.2111 </td>
+   <td style="text-align:right;"> 0.1828 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0211 </td>
@@ -379,9 +379,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 1.0000 </td>
    <td style="text-align:right;"> 0.5427 </td>
-   <td style="text-align:right;"> 2.8148 </td>
-   <td style="text-align:right;"> 0.0006 </td>
-   <td style="text-align:right;"> 0.5348 </td>
+   <td style="text-align:right;"> 0.2645 </td>
+   <td style="text-align:right;"> 0.2192 </td>
+   <td style="text-align:right;"> 0.2267 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0502 </td>
@@ -389,9 +389,9 @@ tba(data_syn[1:10, 1:8])
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 0.3699 </td>
    <td style="text-align:right;"> 0.4974 </td>
-   <td style="text-align:right;"> 2.5265 </td>
-   <td style="text-align:right;"> 0.0127 </td>
-   <td style="text-align:right;"> 0.3983 </td>
+   <td style="text-align:right;"> 0.2727 </td>
+   <td style="text-align:right;"> 0.1824 </td>
+   <td style="text-align:right;"> 0.1795 </td>
   </tr>
 </tbody>
 </table>
@@ -425,7 +425,7 @@ dim(data_syn)
 ```
 
 ```
-## [1] 22 30
+## [1] 22 33
 ```
 
 

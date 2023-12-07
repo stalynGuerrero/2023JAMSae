@@ -243,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now, the Fay Herriot model relates area indicators <span class="math inline">\(\theta_d\)</span>, where <span class="math inline">\(d\)</span> ranges from 1 to <span class="math inline">\(D\)</span>, assuming they vary with respect to a vector of <span class="math inline">\(p\)</span> covariates <span class="math inline">\(\boldsymbol{x}_d\)</span>. The model is defined by the equation <span class="math inline">\(\theta_d = \boldsymbol{x}^{T}_{d}\boldsymbol{\beta} + u_d\)</span>, where <span class="math inline">\(u_d\)</span> is the error term or random effect, distinct for each area and distributed as <span class="math inline">\(u_{d} \stackrel{ind}{\sim}\left(0,\sigma_{u}^{2}\right)\)</span>.</p>
 <p>However, the true values of the indicators <span class="math inline">\(\theta_d\)</span> are not observable. Hence, the direct estimator <span class="math inline">\(\hat{\theta}^{DIR}_d\)</span> is used to estimate them, leading to sampling error. This estimator is still considered unbiased under the sample design, i.e.,
 <span class="math display">\[
-\hat{\theta}_d^{DIR} = \theta + e_d  
+\hat{\theta}_d^{DIR} = \theta_d + e_d  
 \]</span></p>
 <p>The model is then fitted using the sampling error term <span class="math inline">\(e_d\)</span>, where <span class="math inline">\(e_{d} \stackrel{ind}{\sim} \left(0,\sigma^2_{e_d}\right)\)</span>, and the variances <span class="math inline">\(\sigma^2_{e_d}\)</span> are estimated using survey microdata. The FH model is rewritten as</p>
 <p><span class="math display">\[
