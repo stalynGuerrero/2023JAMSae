@@ -264,7 +264,7 @@ model_FH_arcoseno <- readRDS("Recursos/04_FH_Arcosin/02_model_FH_arcoseno.rds")
 ```
 
 
-#### Resultados del modelo para los dominios observados. 
+#### Model results for the observed domains. 
 
 
 

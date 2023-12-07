@@ -59,10 +59,6 @@ Some of the main sources of satellite images include:
 However, most of these sources are centralized within **Google Earth Engine**, which allows searching for satellite image data sources. GEE can be managed through APIs in different programming languages: JavaScript (by default), Python, and R (rgee package).
 
 
-Here's the translation:
-
----
-
 ## Google Earth Engine
 
 Create an account at [this link](https://earthengine.google.com/). Once logged in, you can search for datasets of interest:
@@ -74,10 +70,6 @@ Create an account at [this link](https://earthengine.google.com/). Once logged i
 * Copy and paste the syntax provided by the dataset search to visualize the raster image and obtain statements allowing for the retrieval of the dataset of interest later in R.
 
 ![Syntax in JavaScript](Recursos/01_Session1/02_query.png)
-
-Sure, here's the translation of the instructions:
-
----
 
 ## Installing rgee
 
@@ -143,9 +135,6 @@ ee.ImageCollection().filterDate()  # JavaScript
 ee$ImageCollection()$filterDate()  # R
 ```
 
-¡Claro! Aquí tienes la traducción de los pasos para descargar información satelital:
-
----
 
 ### Downloading Satellite Information
 

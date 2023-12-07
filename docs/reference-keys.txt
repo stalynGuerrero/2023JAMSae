@@ -24,7 +24,7 @@ results-of-the-model-for-observed-domains.
 area-models---arcsin-transformation.
 estimation-procedure-1
 preparing-inputs-for-stan
-resultados-del-modelo-para-los-dominios-observados.
+model-results-for-the-observed-domains.
 benchmark-process
 results-validation
 poverty-map

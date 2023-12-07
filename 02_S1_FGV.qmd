@@ -177,7 +177,7 @@ indicador_dam <- readRDS("Recursos/02_FGV/indicador_dam.Rds")
 tba(head(indicador_dam, 10))
 ```
 
-Ahora se realiza el filtro de los dominios con 5 o más UPMs y todos los que tengan un deff mayor que 1
+Domains with 5 or more UPMs and all those with a deff greater than 1 are now filtered.
 
 
 ```{r}
@@ -187,7 +187,7 @@ base_sae <- indicador_dam %>%
 ```
 
 
-seguidamente se realiza la transformación $\log(\hat{\sigma}^2_d)$, además se realiza la selección de las columnas identificador del municipio (`dam2`), la estimación directa  (`pobreza`), El número de personas en el dominio (`nd`) y la varianza estimada del para la estimación directa `vardir`,siendo esta la que transforma mediante la función `log()`. 
+Next, the transformation $\log(\hat{\sigma}^2_d)$ is performed. Additionally, the selection of the municipality identifier columns (`dam2`), the direct estimation (`pobreza`), the number of people in the domain (`nd`), and the estimated variance for the direct estimation (`vardir`) is carried out, the latter being transformed using the `log()` function.
 
 ```{r}
 baseFGV <-  base_sae %>% 

@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-12-05" />
+<meta name="date" content="2023-12-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1471,11 +1471,11 @@ NaN
 </tr>
 </tbody>
 </table>
-<p>Ahora se realiza el filtro de los dominios con 5 o más UPMs y todos los que tengan un deff mayor que 1</p>
+<p>Domains with 5 or more UPMs and all those with a deff greater than 1 are now filtered.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="session-2--generalized-variance-function.html#cb13-1" tabindex="-1"></a>base_sae <span class="ot">&lt;-</span> indicador_dam <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="session-2--generalized-variance-function.html#cb13-2" tabindex="-1"></a>  <span class="fu">filter</span>(n_upm <span class="sc">&gt;=</span> <span class="dv">5</span>,</span>
 <span id="cb13-3"><a href="session-2--generalized-variance-function.html#cb13-3" tabindex="-1"></a>         pobreza_deff <span class="sc">&gt;</span> <span class="dv">1</span>) </span></code></pre></div>
-<p>seguidamente se realiza la transformación <span class="math inline">\(\log(\hat{\sigma}^2_d)\)</span>, además se realiza la selección de las columnas identificador del municipio (<code>dam2</code>), la estimación directa (<code>pobreza</code>), El número de personas en el dominio (<code>nd</code>) y la varianza estimada del para la estimación directa <code>vardir</code>,siendo esta la que transforma mediante la función <code>log()</code>.</p>
+<p>Next, the transformation <span class="math inline">\(\log(\hat{\sigma}^2_d)\)</span> is performed. Additionally, the selection of the municipality identifier columns (<code>dam2</code>), the direct estimation (<code>pobreza</code>), the number of people in the domain (<code>nd</code>), and the estimated variance for the direct estimation (<code>vardir</code>) is carried out, the latter being transformed using the <code>log()</code> function.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="session-2--generalized-variance-function.html#cb14-1" tabindex="-1"></a>baseFGV <span class="ot">&lt;-</span>  base_sae <span class="sc">%&gt;%</span> </span>
 <span id="cb14-2"><a href="session-2--generalized-variance-function.html#cb14-2" tabindex="-1"></a>  <span class="fu">select</span>(dam2, pobreza, <span class="at">nd =</span> n_pobreza, <span class="at">vardir =</span> pobreza_var) <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a href="session-2--generalized-variance-function.html#cb14-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ln_sigma2 =</span> <span class="fu">log</span>(vardir))</span></code></pre></div>
