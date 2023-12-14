@@ -1,0 +1,16 @@
+book_filename: "Area models for estimating poverty and labor market indicators"
+delete_merged_file: true
+output_dir: "pdf"
+new_session: yes
+
+rmd_files: [
+  "index.Rmd",
+  "01_S00_Satellite_Images.rmd",
+  "02_S1_FGV.rmd",
+  "03_S1_Fay_Herriot_normal.rmd",
+  "04_S1_Fay_Herriot_arcosin.rmd",
+  "05_S2_Work_Market.rmd"
+]
+language:
+  ui:
+    chapter_name: "Chapter "
